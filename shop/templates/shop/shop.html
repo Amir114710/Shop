@@ -1,0 +1,607 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+فروشگاه
+{% endblock %}
+{% block content %}
+<div class="page-title-area">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div class="container">
+                <div class="title-content">
+                    <h2>فروشگاه</h2>
+                    <ul>
+                        <li>
+                            <a href="index.html">خانه</a>
+                        </li>
+                        <li>
+                            <span>فروشگاه</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="title-img">
+        <img src="{% static "images/page-title1.jpg" %}" alt="About" />
+        <img src="{% static "mages/shape16.png" %}" alt="Shape" />
+        <img src="{% static "images/shape17.png" %}" alt="Shape" />
+        <img src="{% static "images/shape18.png" %}" alt="Shape" />
+    </div>
+</div>
+
+<div class="products-area ptb-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="sorting-menu">
+                    <ul>
+                        <li class="filter active" data-filter="all">
+                            <div class="products-thumb">
+                                <img src="{% static "images/products/shape1.png" %}" alt="Shape" />
+                                <img src="assets/images/products/shape2.png" alt="Shape" />
+                                <i class="flaticon-square"></i>
+                                <span>همه</span>
+                            </div>
+                        </li>
+                        <li class="filter" data-filter=".armchair">
+                            <div class="products-thumb">
+                                <img src="{% static "images/products/shape1.png" %}" alt="Shape" />
+                                <img src="assets/images/products/shape2.png" alt="Shape" />
+                                <i class="flaticon-armchair"></i>
+                                <span>صندلی</span>
+                            </div>
+                        </li>
+                        <li class="filter" data-filter=".sofa">
+                            <div class="products-thumb">
+                                <img src="{% static "images/products/shape1.png" %}" alt="Shape" />
+                                <img src="assets/images/products/shape2.png" alt="Shape" />
+                                <i class="flaticon-sofa"></i>
+                                <span>کاناپه</span>
+                            </div>
+                        </li>
+                        <li class="filter" data-filter=".computer">
+                            <div class="products-thumb">
+                                <img src="{% static "images/products/shape1.png" %}" alt="Shape" />
+                                <img src="assets/images/products/shape2.png" alt="Shape" />
+                                <i class="flaticon-table"></i>
+                                <span>میز کامپیوتر</span>
+                            </div>
+                        </li>
+                        <li class="filter" data-filter=".desk">
+                            <div class="products-thumb">
+                                <img src="{% static "images/products/shape1.png" %}" alt="Shape" />
+                                <img src="assets/images/products/shape2.png" alt="Shape" />
+                                <i class="flaticon-desk-chair"></i>
+                                <span>صندلی میز</span>
+                            </div>
+                        </li>
+                        <li class="filter" data-filter=".center">
+                            <div class="products-thumb">
+                                <img src="{% static "images/products/shape1.png" %}" alt="Shape" />
+                                <img src="assets/images/products/shape2.png" alt="Shape" />
+                                <i class="flaticon-table-1"></i>
+                                <span>میز وسط</span>
+                            </div>
+                        </li>
+                        <li class="filter" data-filter=".book">
+                            <div class="products-thumb">
+                                <img src="{% static "images/products/shape1.png" %}" alt="Shape" />
+                                <img src="assets/images/products/shape2.png" alt="Shape" />
+                                <i class="flaticon-shelf"></i>
+                                <span>قفسه کتاب</span>
+                            </div>
+                        </li>
+                        <li class="filter" data-filter=".cabinet">
+                            <div class="products-thumb">
+                                <img src="{% static "images/products/shape1.png" %}" alt="Shape" />
+                                <img src="assets/images/products/shape2.png" alt="Shape" />
+                                <i class="flaticon-cabinet"></i>
+                                <span>کابینت</span>
+                            </div>
+                        </li>
+                        <li class="filter" data-filter=".bed">
+                            <div class="products-thumb">
+                                <img src="{% static "images/products/shape1.png" %}" alt="Shape" />
+                                <img src="assets/images/products/shape2.png" alt="Shape" />
+                                <i class="flaticon-bed"></i>
+                                <span>تخت خواب</span>
+                            </div>
+                        </li>
+                        <li class="filter" data-filter=".center-table">
+                            <div class="products-thumb">
+                                <img src="{% static "images/products/shape1.png" %}" alt="Shape" />
+                                <img src="assets/images/products/shape2.png" alt="Shape" />
+                                <i class="flaticon-dresser"></i>
+                                <span>میز آرایش</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div id="Container" class="row">
+                    <div class="col-sm-6 col-lg-4 mix armchair center-table">
+                        <div class="products-item">
+                            <div class="top">
+                                <a class="product-type" href="#">حراج</a>
+                                <a class="wishlist" href="#">
+                                    <i class="bx bx-heart"></i>
+                                </a>
+                                <img src="assets/images/products/products1.png" alt="Products" />
+                                <div class="inner">
+                                    <h3>
+                                        <a href="single-product.html">صندلی سفید</a>
+                                    </h3>
+                                    <span>200 تومان</span>
+                                </div>
+                            </div>
+                            <div class="bottom">
+                                <a class="cart-text" href="#">سبد خرید</a>
+                                <i class="bx bx-plus"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-4 mix sofa bed">
+                        <div class="products-item">
+                            <div class="top">
+                                <a class="wishlist" href="#">
+                                    <i class="bx bx-heart"></i>
+                                </a>
+                                <img src="assets/images/products/products2.png" alt="Products" />
+                                <div class="inner">
+                                    <h3>
+                                        <a href="single-product.html">صندلی زرد</a>
+                                    </h3>
+                                    <span>180 تومان</span>
+                                </div>
+                            </div>
+                            <div class="bottom">
+                                <a class="cart-text" href="#">سبد خرید</a>
+                                <i class="bx bx-plus"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-4 mix computer cabinet">
+                        <div class="products-item">
+                            <div class="top">
+                                <a class="wishlist" href="#">
+                                    <i class="bx bx-heart"></i>
+                                </a>
+                                <img src="assets/images/products/products3.png" alt="Products" />
+                                <div class="inner">
+                                    <h3>
+                                        <a href="single-product.html">مبل سفید راحتی</a>
+                                    </h3>
+                                    <span>170 تومان</span>
+                                </div>
+                            </div>
+                            <div class="bottom">
+                                <a class="cart-text" href="#">سبد خرید</a>
+                                <i class="bx bx-plus"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-4 mix desk book">
+                        <div class="products-item">
+                            <div class="top">
+                                <a class="wishlist" href="#">
+                                    <i class="bx bx-heart"></i>
+                                </a>
+                                <img src="assets/images/products/products4.png" alt="Products" />
+                                <div class="inner">
+                                    <h3>
+                                        <a href="single-product.html">مبل رویال</a>
+                                    </h3>
+                                    <span>190 تومان</span>
+                                </div>
+                            </div>
+                            <div class="bottom">
+                                <a class="cart-text" href="#">سبد خرید</a>
+                                <i class="bx bx-plus"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-4 mix center armchair">
+                        <div class="products-item">
+                            <div class="top">
+                                <a class="product-type two" href="#">ویژه</a>
+                                <a class="wishlist" href="#">
+                                    <i class="bx bx-heart"></i>
+                                </a>
+                                <img src="assets/images/products/products5.png" alt="Products" />
+                                <div class="inner">
+                                    <h3>
+                                        <a href="single-product.html">راحتی زرد چوبی</a>
+                                    </h3>
+                                    <span>160 تومان</span>
+                                </div>
+                            </div>
+                            <div class="bottom">
+                                <a class="cart-text" href="#">سبد خرید</a>
+                                <i class="bx bx-plus"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-4 mix book sofa">
+                        <div class="products-item">
+                            <div class="top">
+                                <a class="wishlist" href="#">
+                                    <i class="bx bx-heart"></i>
+                                </a>
+                                <img src="assets/images/products/products6.png" alt="Products" />
+                                <div class="inner">
+                                    <h3>
+                                        <a href="single-product.html">مبل کلاسیک نارنجی</a>
+                                    </h3>
+                                    <span>120 تومان</span>
+                                </div>
+                            </div>
+                            <div class="bottom">
+                                <a class="cart-text" href="#">سبد خرید</a>
+                                <i class="bx bx-plus"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-4 mix cabinet computer">
+                        <div class="products-item">
+                            <div class="top">
+                                <a class="wishlist" href="#">
+                                    <i class="bx bx-heart"></i>
+                                </a>
+                                <img src="assets/images/products/products7.png" alt="Products" />
+                                <div class="inner">
+                                    <h3>
+                                        <a href="single-product.html">مبل لوکس سفید</a>
+                                    </h3>
+                                    <span>250 تومان</span>
+                                </div>
+                            </div>
+                            <div class="bottom">
+                                <a class="cart-text" href="#">سبد خرید</a>
+                                <i class="bx bx-plus"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-4 mix bed desk">
+                        <div class="products-item">
+                            <div class="top">
+                                <a class="wishlist" href="#">
+                                    <i class="bx bx-heart"></i>
+                                </a>
+                                <img src="assets/images/products/products8.png" alt="Products" />
+                                <div class="inner">
+                                    <h3>
+                                        <a href="single-product.html">صندلی سلطنتی</a>
+                                    </h3>
+                                    <span>210 تومان</span>
+                                </div>
+                            </div>
+                            <div class="bottom">
+                                <a class="cart-text" href="#">سبد خرید</a>
+                                <i class="bx bx-plus"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-4 mix center-table cabinet">
+                        <div class="products-item">
+                            <div class="top">
+                                <a class="product-type" href="#">حراج</a>
+                                <a class="wishlist" href="#">
+                                    <i class="bx bx-heart"></i>
+                                </a>
+                                <img src="assets/images/products/products9.png" alt="Products" />
+                                <div class="inner">
+                                    <h3>
+                                        <a href="single-product.html">کمد لباس</a>
+                                    </h3>
+                                    <span>220 تومان</span>
+                                </div>
+                            </div>
+                            <div class="bottom">
+                                <a class="cart-text" href="#">سبد خرید</a>
+                                <i class="bx bx-plus"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-4 mix desk sofa">
+                        <div class="products-item">
+                            <div class="top">
+                                <a class="product-type two" href="#">پرطرفدار</a>
+                                <a class="wishlist" href="#">
+                                    <i class="bx bx-heart"></i>
+                                </a>
+                                <img src="assets/images/products/products10.png" alt="Products" />
+                                <div class="inner">
+                                    <h3>
+                                        <a href="single-product.html">کمد لباس لوکس</a>
+                                    </h3>
+                                    <span>200 تومان</span>
+                                </div>
+                            </div>
+                            <div class="bottom">
+                                <a class="cart-text" href="#">سبد خرید</a>
+                                <i class="bx bx-plus"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-4 mix center armchair">
+                        <div class="products-item">
+                            <div class="top">
+                                <a class="wishlist" href="#">
+                                    <i class="bx bx-heart"></i>
+                                </a>
+                                <img src="assets/images/products/products11.png" alt="Products" />
+                                <div class="inner">
+                                    <h3>
+                                        <a href="single-product.html">کمد چوبی</a>
+                                    </h3>
+                                    <span>180 تومان</span>
+                                </div>
+                            </div>
+                            <div class="bottom">
+                                <a class="cart-text" href="#">سبد خرید</a>
+                                <i class="bx bx-plus"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-4 mix book center-table">
+                        <div class="products-item">
+                            <div class="top">
+                                <a class="wishlist" href="#">
+                                    <i class="bx bx-heart"></i>
+                                </a>
+                                <img src="assets/images/products/products12.png" alt="Products" />
+                                <div class="inner">
+                                    <h3>
+                                        <a href="single-product.html">کمد لباس</a>
+                                    </h3>
+                                    <span>170 تومان</span>
+                                </div>
+                            </div>
+                            <div class="bottom">
+                                <a class="cart-text" href="#">سبد خرید</a>
+                                <i class="bx bx-plus"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-4 mix cabinet bed">
+                        <div class="products-item">
+                            <div class="top">
+                                <a class="wishlist" href="#">
+                                    <i class="bx bx-heart"></i>
+                                </a>
+                                <img src="assets/images/products/products13.png" alt="Products" />
+                                <div class="inner">
+                                    <h3>
+                                        <a href="single-product.html">میز چوبی کلاسیک</a>
+                                    </h3>
+                                    <span>190 تومان</span>
+                                </div>
+                            </div>
+                            <div class="bottom">
+                                <a class="cart-text" href="#">سبد خرید</a>
+                                <i class="bx bx-plus"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-4 mix cabinet cabinet bed">
+                        <div class="products-item">
+                            <div class="top">
+                                <a class="wishlist" href="#">
+                                    <i class="bx bx-heart"></i>
+                                </a>
+                                <img src="assets/images/products/products42.png" alt="Products" />
+                                <div class="inner">
+                                    <h3>
+                                        <a href="single-product.html">میز وسط چوبی خالص</a>
+                                    </h3>
+                                    <span>180 تومان</span>
+                                </div>
+                            </div>
+                            <div class="bottom">
+                                <a class="cart-text" href="#">سبد خرید</a>
+                                <i class="bx bx-plus"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-4 mix cabinet desk bed">
+                        <div class="products-item">
+                            <div class="top">
+                                <a class="wishlist" href="#">
+                                    <i class="bx bx-heart"></i>
+                                </a>
+                                <img src="assets/images/products/products43.png" alt="Products" />
+                                <div class="inner">
+                                    <h3>
+                                        <a href="single-product.html">چهارپایه چوبی</a>
+                                    </h3>
+                                    <span>190 تومان</span>
+                                </div>
+                            </div>
+                            <div class="bottom">
+                                <a class="cart-text" href="#">سبد خرید</a>
+                                <i class="bx bx-plus"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <a class="common-btn" href="shop.html">
+                        محصولات بیشتر
+                        <img src="assets/images/shape1.png" alt="Shape" />
+                        <img src="assets/images/shape2.png" alt="Shape" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="products-area pb-70">
+    <div class="container">
+        <div class="section-title">
+            <h2>پرفروش ترین محصولات</h2>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-lg-3">
+                <div class="products-item">
+                    <div class="top">
+                        <a class="wishlist" href="#">
+                            <i class="bx bx-heart"></i>
+                        </a>
+                        <img src="assets/images/products/products10.png" alt="Products" />
+                        <div class="inner">
+                            <h3>
+                                <a href="single-product.html">کمد لباس لوکس</a>
+                            </h3>
+                            <span>200 تومان</span>
+                        </div>
+                    </div>
+                    <div class="bottom">
+                        <a class="cart-text" href="#">سبد خرید</a>
+                        <i class="bx bx-plus"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <div class="products-item">
+                    <div class="top">
+                        <a class="wishlist" href="#">
+                            <i class="bx bx-heart"></i>
+                        </a>
+                        <img src="assets/images/products/products11.png" alt="Products" />
+                        <div class="inner">
+                            <h3>
+                                <a href="single-product.html">کمد چوبی</a>
+                            </h3>
+                            <span>180 تومان</span>
+                        </div>
+                    </div>
+                    <div class="bottom">
+                        <a class="cart-text" href="#">سبد خرید</a>
+                        <i class="bx bx-plus"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <div class="products-item">
+                    <div class="top">
+                        <a class="wishlist" href="#">
+                            <i class="bx bx-heart"></i>
+                        </a>
+                        <img src="assets/images/products/products12.png" alt="Products" />
+                        <div class="inner">
+                            <h3>
+                                <a href="single-product.html">کمد لباس</a>
+                            </h3>
+                            <span>170 تومان</span>
+                        </div>
+                    </div>
+                    <div class="bottom">
+                        <a class="cart-text" href="#">سبد خرید</a>
+                        <i class="bx bx-plus"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <div class="products-item">
+                    <div class="top">
+                        <a class="wishlist" href="#">
+                            <i class="bx bx-heart"></i>
+                        </a>
+                        <img src="assets/images/products/products13.png" alt="Products" />
+                        <div class="inner">
+                            <h3>
+                                <a href="single-product.html">میز چوبی کلاسیک</a>
+                            </h3>
+                            <span>190 تومان</span>
+                        </div>
+                    </div>
+                    <div class="bottom">
+                        <a class="cart-text" href="#">سبد خرید</a>
+                        <i class="bx bx-plus"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade modal-right popup-modal" id="exampleModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>سبد خرید <span>2 محصول</span></h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="cart-table">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th scope="row">
+                                    <img src="assets/images/cart/cart1.png" alt="Cart" />
+                                </th>
+                                <td>
+                                    <h3>صندلی راحت سفید</h3>
+                                    <span class="rate">200 تومان - 1 عدد</span>
+                                </td>
+                                <td>
+                                    <ul class="number">
+                                        <li>
+                                            <span class="minus">-</span>
+                                            <input type="text" value="1" />
+                                            <span class="plus">+</span>
+                                        </li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <a class="close" href="#">
+                                        <i class="bx bx-x"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">
+                                    <img src="assets/images/cart/cart2.png" alt="Cart" />
+                                </th>
+                                <td>
+                                    <h3>صندلی زرد</h3>
+                                    <span class="rate">180 تومان - 1 عدد</span>
+                                </td>
+                                <td>
+                                    <ul class="number">
+                                        <li>
+                                            <span class="minus">-</span>
+                                            <input type="text" value="1" />
+                                            <span class="plus">+</span>
+                                        </li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <a class="close" href="#">
+                                        <i class="bx bx-x"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="total-amount">
+                        <h3>جمع: <span>380 تومان</span></h3>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <form>
+                    <input type="text" class="form-control" placeholder="شماره کوپن تخفیف" />
+                    <button type="submit" class="btn common-btn">
+                        ادامه برای پرداخت
+                        <img src="assets/images/shape1.png" alt="Shape" />
+                        <img src="assets/images/shape2.png" alt="Shape" />
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
