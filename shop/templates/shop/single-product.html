@@ -1,11 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}
-detail
+{{products.title}}
 {% endblock %}
 {% block content %}
-
-
         <div class="page-title-area">
             <div class="d-table">
                 <div class="d-table-cell">
@@ -43,17 +41,17 @@ detail
                                         <div id="thumbs" class="owl-carousel owl-theme">
                                             <div class="item">
                                                 <div class="top-img">
-                                                    <img src="{% static "images/products/product-details1.png" %}" alt="Product" />
+                                                    <img src="{{products.image1.url}}" alt="Product" />
                                                 </div>
                                             </div>
                                             <div class="item">
                                                 <div class="top-img">
-                                                    <img src="{% static "images/products/product-details2.png" %}" alt="Product" />
+                                                    <img src="{{products.image2.url}}" alt="Product" />
                                                 </div>
                                             </div>
                                             <div class="item">
                                                 <div class="top-img">
-                                                    <img src="{% static "images/products/product-details3.png" %}" alt="Product" />
+                                                    <img src="{{products.image3.url}}" alt="Product" />
                                                 </div>
                                             </div>
                                         </div>
@@ -62,14 +60,14 @@ detail
                                         <div id="big" class="owl-carousel owl-theme">
                                             <div class="item">
                                                 <div class="top-img">
-                                                    <img src="{% static "images/products/product-details4.png" %}" alt="Product" />
+                                                    <img src="{{products.image.url}}" alt="Product" />
                                                 </div>
                                             </div>
                                             <div class="top-img">
-                                                <img src="{% static "images/products/product-details5.png" %}" alt="Product" />
+                                                <img src="{{ products.image1.url }}" alt="Product" />
                                             </div>
                                             <div class="top-img">
-                                                <img src="{% static "images/products/product-details6.png" %}" alt="Product" />
+                                                <img src="{{products.image2.url}}" alt="Product" />
                                             </div>
                                         </div>
                                     </div>
@@ -78,7 +76,7 @@ detail
                         </div>
                         <div class="col-lg-4">
                             <div class="top-content">
-                                <h2>صندلی زرد سلطنتی</h2>
+                                <h2>{{products.title}}</h2>
                                 <ul class="reviews">
                                     <li>
                                         <i class="bx bxs-star checked"></i>
@@ -99,15 +97,19 @@ detail
                                         <span>(2 نظرات)</span>
                                     </li>
                                     <li>
-                                        <h3>400 تومان</h3>
+                                        <h3>{{products.price}} تومان</h3>
                                     </li>
                                 </ul>
-                                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است</p>
+                                <p>{{products.discription}}</p>
                                 <ul class="tag">
-                                    <li>کد: <span>042</span></li>
-                                    <li>دسته بندی: <span>کاناپه</span></li>
-                                    <li>برچسب: <span>مبلمان</span></li>
+                                    <li>کد: <span>{{products.code}}</span></li>
+                                    <li>دسته بندی: <span>{{products.category.first}}</span></li>
+                                    <li>برچسب: <span>{{products.tags.first}}</span></li>
+                                    {% if products.status == True %}
                                     <li>وضعیت: <span>موجود</span></li>
+                                    {% else %}
+                                    <li>وضعیت: <span>نا موجود</span></li>
+                                    {% endif %}
                                 </ul>
                                 <ul class="cart">
                                     <li>
@@ -150,17 +152,14 @@ detail
                         <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
                             <div class="bottom-description">
                                 <p>
-                                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص
-                                </p>
-                                <p>
-                                    طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد
+                                    {{products.content}}
                                 </p>
                                 <ul>
-                                    <li><span></span> لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان</li>
-                                    <li><span></span> برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد</li>
-                                    <li><span></span> فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای</li>
-                                    <li><span></span> زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات</li>
-                                    <li><span></span> طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و</li>
+                                    <li><span></span>{{products.tip1}}</li>
+                                    <li><span></span>{{products.tip2}}</li>
+                                    <li><span></span>{{products.tip3}}</li>
+                                    <li><span></span>{{products.tip4}}</li>
+                                    <li><span></span>{{products.tip5}}</li>
                                 </ul>
                             </div>
                         </div>
