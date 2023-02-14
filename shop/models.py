@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.text import slugify
+from django.contrib.auth.models import User
 
 class Category(models.Model):
     fontasswoem = models.CharField(max_length=500 , null=True , blank=True , verbose_name="عکس دسته بندی")
@@ -63,3 +64,34 @@ class Product(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.english_title)
         super(Product , self).save(*args, **kwargs)
+
+class Comments(models.Model):
+    user = models.ForeignKey(User , related_name="comment" , on_delete=models.CASCADE , verbose_name = 'کاربر')
+    products = models.ForeignKey(Product , related_name="comment" , on_delete=models.CASCADE, verbose_name = 'کالا ها')
+
+    parent = models.ForeignKey('self' , on_delete=models.CASCADE , related_name = 'replies' , null=True , blank=True, verbose_name = 'پست جواب داده شده')
+
+    message = models.TextField(null=True, blank=True, verbose_name = 'نظرات')
+    created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.user.username}-{self.products.title}'
+
+    class Meta:
+        verbose_name = 'نظر'
+        verbose_name_plural = "تنظیمات قسمت نظرات"
+        ordering = ('-created',)
+
+class Like(models.Model):
+    users = models.ForeignKey(User , related_name='likes' , on_delete=models.CASCADE , verbose_name = 'کاربر')
+    products = models.ForeignKey(Product , related_name='likes' , on_delete=models.CASCADE , verbose_name = 'کالا ها')
+    created = models.DateTimeField(auto_now_add=True)
+
+
+    def __str__(self):
+        return f"{self.users.username} - {self.products.title}"
+
+    class Meta:
+        verbose_name = "لایک"
+        verbose_name_plural = "تنظیمات قسمت لایک ها"
+        ordering = ("-created",)
