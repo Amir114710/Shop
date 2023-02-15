@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import  View , TemplateView , ListView , DetailView
-from .models import Like, Product , Category
+from .models import Comments, Like, Product , Category
 
 class ProductView(ListView):
     template_name = "shop/shop.html"
@@ -27,6 +27,12 @@ class ProductDetail(DetailView):
         else:
             pass
         return context
+    def post(self,request,slug):
+        products = Product.objects.get(slug=slug)
+        parent_id = request.POST.get('parent_id')
+        message = request.POST.get('message')
+        Comments.objects.create(message=message, parent_id=parent_id , products=products , user=request.user)
+        return redirect('shop:shop_detail' , slug)
 
 class Category_details(View):
     queryset = None

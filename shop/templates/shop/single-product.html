@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load ratings %}
 {% block title %}
 {{products.title}}
 {% endblock %}
@@ -77,22 +78,8 @@
                         <div class="col-lg-4">
                             <div class="top-content">
                                 <h2>{{products.title}}</h2>
+                                {% ratings products %}
                                 <ul class="reviews">
-                                    <li>
-                                        <i class="bx bxs-star checked"></i>
-                                    </li>
-                                    <li>
-                                        <i class="bx bxs-star checked"></i>
-                                    </li>
-                                    <li>
-                                        <i class="bx bxs-star checked"></i>
-                                    </li>
-                                    <li>
-                                        <i class="bx bxs-star checked"></i>
-                                    </li>
-                                    <li>
-                                        <i class="bx bxs-star"></i>
-                                    </li>
                                     <li>
                                         <span>(2 نظرات)</span>
                                     </li>
@@ -171,69 +158,34 @@
                         <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
                             <div class="bottom-comment">
                                 <ul class="comments">
+                                {% for comment in products.comment.all %}
+                                    {% if comment.parent == None %}
                                     <li>
-                                        <img src="{% static "images/blog/comment1.jpg" %}" alt="Blog" />
-                                        <h4>رضا محسنی</h4>
-                                        <span>11 مرداد 14001</span>
+                                        <img src="{% static "images/main-photo.svg" %}" alt="Blog" />
+                                        <h4>{{ comment.user.username }}</h4>
+                                        <span>{{comment.created}}</span>
                                         <p>
-                                            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد
+                                            {{comment.message}}
                                         </p>
                                         <ul class="reviews">
                                             <li>
-                                                <i class="bx bxs-star checked"></i>
-                                            </li>
-                                            <li>
-                                                <i class="bx bxs-star checked"></i>
-                                            </li>
-                                            <li>
-                                                <i class="bx bxs-star checked"></i>
-                                            </li>
-                                            <li>
-                                                <i class="bx bxs-star checked"></i>
-                                            </li>
-                                            <li>
-                                                <i class="bx bxs-star"></i>
+                                                {% ratings comment %}
                                             </li>
                                         </ul>
                                     </li>
-                                    <li>
-                                        <img src="{% static "images/blog/comment2.jpg" %}" alt="Blog" />
-                                        <h4>جواد نیازی</h4>
-                                        <span>12 مرداد 1400</span>
-                                        <p>
-                                            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد
-                                        </p>
-                                        <ul class="reviews">
-                                            <li>
-                                                <i class="bx bxs-star checked"></i>
-                                            </li>
-                                            <li>
-                                                <i class="bx bxs-star checked"></i>
-                                            </li>
-                                            <li>
-                                                <i class="bx bxs-star checked"></i>
-                                            </li>
-                                            <li>
-                                                <i class="bx bxs-star checked"></i>
-                                            </li>
-                                            <li>
-                                                <i class="bx bxs-star"></i>
-                                            </li>
-                                        </ul>
-                                    </li>
+                                    {% endif %}
+                                {% endfor %}
                                 </ul>
                             </div>
                             <div class="bottom-review">
                                 <h3>ارسال نظرات</h3>
-                                <form>
+                                <form action="" method="post">
+                                    {% csrf_token %}
                                     <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="نام" />
+                                        <input type="hidden" name="parent_id" id="parent_id" class="form-control" value=""/>
                                     </div>
                                     <div class="form-group">
-                                        <input type="email" class="form-control" placeholder="ایمیل" />
-                                    </div>
-                                    <div class="form-group">
-                                        <textarea id="your-comments" rows="8" class="form-control" placeholder="نظرات"></textarea>
+                                        <textarea id="your-comments" name="message" rows="8" class="form-control" placeholder="نظرات"></textarea>
                                     </div>
                                     <button type="submit" class="btn common-btn">
                                         ارسال نظر
