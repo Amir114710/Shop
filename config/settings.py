@@ -40,8 +40,9 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     #My apps:
-    'home_app',
-    'shop',
+    'home_app.apps.HomeAppConfig',
+    'shop.apps.ShopConfig',
+    'account.apps.AccountConfig',
     #My packages:
     'star_ratings',
     'django_cleanup',
@@ -136,3 +137,5 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 STAR_RATINGS_STAR_HEIGHT = 17
 STAR_RATINGS_RERATE = True
 STAR_RATINGS_ANONYMOUS = True
+
+AUTH_USER_MODEL = 'account.User'

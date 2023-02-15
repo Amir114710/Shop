@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+Otp_Registerations
+{% endblock %}
+{% block content %}
+<div class="page-title-area">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div class="container">
+                <div class="title-content">
+                    <h2>ثبت نام</h2>
+                    <ul>
+                        <li>
+                            <a href="{% url 'home:main' %}">خانه</a>
+                        </li>
+                        <li>
+                            <span>ثبت نام</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="title-img">
+        <img src="{% static "images/page-title1.jpg" %}" alt="About" />
+        <img src="{% static "images/shape16.png" %}" alt="Shape" />
+        <img src="{% static "images/shape17.png" %}" alt="Shape" />
+        <img src="{% static "images/shape18.png" %}" alt="Shape" />
+    </div>
+</div>
+
+<div class="user-area ptb-100">
+    <div class="container">
+        <div class="user-item">
+            <form action="" method="post">
+                {% csrf_token %}
+                <h2>ثبت نام</h2>
+                {% for error in form.errors.phone %}
+                    <p class="alert alert-danger">{{error}}</p>
+                {% endfor %}
+                <div class="form-group">
+                    {{form.phone}}                    
+                </div>
+                <div class="form-group">
+                    <div class="form-check">
+                        {{form.is_Accept_terms}}
+                        <label class="form-check-label" for="flexCheckDefault4"> من همه <a href="terms-conditions.html">شرایط و ضوابط</a> را می پذیرم</label>
+                    </div>
+                </div>
+                <button type="submit" class="btn common-btn">
+                    ثبت نام
+                    <img src="{% static "images/shape1.png" %}" alt="Shape" />
+                    <img src="{% static "images/shape2.png" %}" alt="Shape" />
+                </button>
+                <h4>Or</h4>
+                <ul>
+                    <li>
+                        <a href="#">
+                            <i class="bx bxl-facebook"></i>
+                            ثبت نام از طریق فیسبوک
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="bx bxl-google"></i>
+                            ثبت نام از طریق گوگل
+                        </a>
+                    </li>
+                </ul>
+                <h5>حساب کاربری دارید؟ <a href="login.html">ورود</a></h5>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

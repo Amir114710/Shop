@@ -92,6 +92,89 @@
                 </div>
             </div>
         </div>
+        <div class="nav-top-area">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-lg-2">
+                        <div class="left">
+                            <a href="index.html">
+                                <img src="{% static "images/logo.png" %}" alt="Logo" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="middle">
+                            <form>
+                                <div class="form-group">
+                                    <div class="inner">
+                                        <select>
+                                            <option>همه دسته بندی</option>
+                                            <option>صندلی</option>
+                                            <option>کمد</option>
+                                            <option>تخت خواب</option>
+                                            <option>کاناپه</option>
+                                            <option>هدفون</option>
+                                            <option>کیبورد</option>
+                                            <option>مک بوک</option>
+                                            <option>سبزیجات</option>
+                                            <option>میوه</option>
+                                            <option>جوجه</option>
+                                        </select>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="جستجو ..." />
+                                    <button type="submit" class="btn">
+                                        <i class="bx bx-search"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="right">
+                            <ul>
+                                <li>
+                                    <div class="inner">
+                                        <i class="flaticon-pin"></i>
+                                        <a href="#">موقعیت مکانی</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="inner">
+                                        <i class="flaticon-question"></i>
+                                        <a href="#">کمک میخواهید؟</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <button type="button" class="btn wishlist cart-popup-btn" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">
+                                        <i class="bx bxs-cart"></i>
+                                        <span>2</span>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button type="button" class="btn wishlist" data-bs-toggle="modal" data-bs-target="#exampleModalWishlist" data-bs-whatever="@mdo">
+                                        <i class="bx bx-heart"></i>
+                                        <span>2</span>
+                                    </button>
+                                </li>
+                                <li>
+                                    {% if request.user.is_authenticated == False %}
+                                    <a class="join" href="{% url 'account:otp' %}">
+                                        <i class="flaticon-round-account-button-with-user-inside"></i>
+                                        ورود یا ثبت نام
+                                    </a>
+                                    {% else %}
+                                    <a class="join" href="{% url 'account:logout' %}">
+                                        <i class="flaticon-round-account-button-with-user-inside"></i>
+                                        خروج
+                                    </a>
+                                    {% endif %}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="navbar-area sticky-top">
             <div class="mobile-nav">
                 <a href="index.html" class="logo">
@@ -229,8 +312,8 @@
 {% endblock %}
 <footer class="footer-area pt-100 pb-70">
     <div class="footer-shape">
-        <img src="assets/images/footer-right-shape.png" alt="Shape" />
-        <img src="assets/images/shape5.png" alt="Shape" />
+        <img src="{% static "images/footer-right-shape.png" %}" alt="Shape" />
+        <img src="{% static "images/shape5.png" %}" alt="Shape" />
     </div>
     <div class="container">
         <div class="row justify-content-center">
@@ -238,7 +321,7 @@
                 <div class="footer-item">
                     <div class="footer-logo">
                         <a class="logo" href="index.html">
-                            <img src="assets/images/logo.png" alt="Logo" />
+                            <img src="{% static "images/logo.png" %}" alt="Logo" />
                         </a>
                         <ul>
                             <li>
@@ -351,22 +434,22 @@
                     <ul>
                         <li>
                             <a href="#" target="_blank">
-                                <img src="assets/images/payment1.png" alt="Payment" />
+                                <img src="{% static "images/payment1.png" %}" alt="Payment" />
                             </a>
                         </li>
                         <li>
                             <a href="#" target="_blank">
-                                <img src="assets/images/payment2.png" alt="Payment" />
+                                <img src="{% static "images/payment2.png" %}" alt="Payment" />
                             </a>
                         </li>
                         <li>
                             <a href="#" target="_blank">
-                                <img src="assets/images/payment3.png" alt="Payment" />
+                                <img src="{% static "images/payment3.png" %}" alt="Payment" />
                             </a>
                         </li>
                         <li>
                             <a href="#" target="_blank">
-                                <img src="assets/images/payment4.png" alt="Payment" />
+                                <img src="{% static "images/payment4.png" %}" alt="Payment" />
                             </a>
                         </li>
                     </ul>
@@ -428,7 +511,7 @@
                         <tbody>
                             <tr>
                                 <th scope="row">
-                                    <img src="assets/images/cart/cart1.png" alt="Cart" />
+                                    <img src="{% static "images/cart/cart1.png" %}" alt="Cart" />
                                 </th>
                                 <td>
                                     <h3>صندلی راحت سفید</h3>
@@ -451,7 +534,7 @@
                             </tr>
                             <tr>
                                 <th scope="row">
-                                    <img src="assets/images/cart/cart2.png" alt="Cart" />
+                                    <img src="{% static "images/cart/cart2.png" %}" alt="Cart" />
                                 </th>
                                 <td>
                                     <h3>صندلی زرد</h3>
@@ -484,8 +567,8 @@
                     <input type="text" class="form-control" placeholder="شماره کوپن تخفیف" />
                     <button type="submit" class="btn common-btn">
                         ادامه برای پرداخت
-                        <img src="assets/images/shape1.png" alt="Shape" />
-                        <img src="assets/images/shape2.png" alt="Shape" />
+                        <img src="{% static "images/shape1.png" %}" alt="Shape" />
+                        <img src="{% static "images/shape2.png" %}" alt="Shape" />
                     </button>
                 </form>
             </div>
@@ -506,7 +589,7 @@
                         <tbody>
                             <tr>
                                 <th scope="row">
-                                    <img src="assets/images/cart/cart1.png" alt="Cart" />
+                                    <img src="{% static "images/cart/cart1.png" %}" alt="Cart" />
                                 </th>
                                 <td>
                                     <h3>صندلی راحت سفید</h3>
@@ -515,8 +598,8 @@
                                 <td>
                                     <a class="common-btn" href="shop.html">
                                         سبد خرید
-                                        <img src="assets/images/shape1.png" alt="Shape" />
-                                        <img src="assets/images/shape2.png" alt="Shape" />
+                                        <img src="{% static "images/shape1.png" %}" alt="Shape" />
+                                        <img src="{% static "images/shape2.png" %}" alt="Shape" />
                                     </a>
                                 </td>
                                 <td>
@@ -527,7 +610,7 @@
                             </tr>
                             <tr>
                                 <th scope="row">
-                                    <img src="assets/images/cart/cart2.png" alt="Cart" />
+                                    <img src="{% static "images/cart/cart2.png" %}" alt="Cart" />
                                 </th>
                                 <td>
                                     <h3>صندلی زرد</h3>
@@ -536,8 +619,8 @@
                                 <td>
                                     <a class="common-btn" href="shop.html">
                                         سبد خرید
-                                        <img src="assets/images/shape1.png" alt="Shape" />
-                                        <img src="assets/images/shape2.png" alt="Shape" />
+                                        <img src="{% static "images/shape1.png" %}" alt="Shape" />
+                                        <img src="{% static "images/shape2.png" %}" alt="Shape" />
                                     </a>
                                 </td>
                                 <td>

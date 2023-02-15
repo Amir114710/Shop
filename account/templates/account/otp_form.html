@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+Otp_Registerations
+{% endblock %}
+{% block content %}
+<div class="page-title-area">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div class="container">
+                <div class="title-content">
+                    <h2>تایید کد ارسال شده</h2>
+                    <ul>
+                        <li>
+                            <a href="index.html">خانه</a>
+                        </li>
+                        <li>
+                            <span>تایید کد ارسال شده</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="title-img">
+        <img src="{% static "images/page-title1.jpg" %}" alt="About" />
+        <img src="{% static "images/shape16.png" %}" alt="Shape" />
+        <img src="{% static "images/shape17.png" %}" alt="Shape" />
+        <img src="{% static "images/shape18.png" %}" alt="Shape" />
+    </div>
+</div>
+
+<div class="user-area ptb-100">
+    <div class="container">
+        <div class="user-item">
+            <form action="" method="post">
+                {% csrf_token %}
+                <h2>تایید کد</h2>
+                {% for error in form.errors.code %}
+                    <p class="alert alert-danger">{{error}}</p>
+                {% endfor %}
+                <div class="form-group">
+                    {{form.code}}                    
+                </div>
+                <button type="submit" class="btn common-btn">
+                    ارسال کد...
+                    <img src="{% static "images/shape1.png" %}" alt="Shape" />
+                    <img src="{% static "images/shape2.png" %}" alt="Shape" />
+                </button>
+                <h5>حساب کاربری دارید؟ <a href="login.html">ورود</a></h5>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
