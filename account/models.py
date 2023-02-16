@@ -48,6 +48,7 @@ class User(AbstractBaseUser):
 class OTP(models.Model):
     token = models.CharField(max_length=12 , null=True)
     phone = models.CharField(max_length=12)
+    is_Accept_terms = models.BooleanField(default=False , verbose_name='پذیرفتن شرایط')
     code = models.SmallIntegerField(null=True, blank=True)
     expiration_date =  models.DateTimeField(null=True, blank=True , auto_now_add=True)
 

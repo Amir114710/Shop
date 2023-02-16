@@ -20,7 +20,7 @@ class OtpRegisterationView(LoginRequirdMixins , FormView):
         random_code = randint(1000 , 9999)
         SMS.verification({'receptor': cd['phone'] , 'type': '1','template': 'randcode','param1': random_code})
         token = str(uuid4())
-        OTP.objects.create(phone = cd['phone'] , code = random_code , token = token)
+        OTP.objects.create(phone = cd['phone'] , is_Accept_terms = cd['is_Accept_terms'] , code = random_code , token = token)
         print(random_code)
         return redirect(reverse('account:check_otp') + f'?token={token}')
 
@@ -33,7 +33,7 @@ class CheckOtpCode(FormView):
         cd = form.cleaned_data
         if OTP.objects.filter(code=cd['code'],token=token).exists():
             otp = OTP.objects.get(token=token)
-            user , is_created = User.objects.get_or_create(phone = otp.phone , is_Accept_terms = True)
+            user , is_created = User.objects.get_or_create(phone = otp.phone)
             login(self.request , user)
             otp.delete()
             return redirect('/')

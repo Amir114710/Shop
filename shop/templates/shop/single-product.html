@@ -123,7 +123,7 @@
                                     <a id="like-post" class="wishlist-btn" href="{% url 'shop:like' products.slug products.id %}"><i class="bx bx-heart">مورد علاقه</i></a></a>
                                     {% endif %}
                                 {% else %}
-                                <p class="alert alert-danger">برای لایک کردن پست اول در <a href="{% url 'account:register' %}">سایت ثبت نام</a> کنید</p>
+                                <p class="alert alert-danger">برای لایک کردن پست اول در <a href="{% url 'account:otp' %}">سایت ثبت نام</a> کنید</p>
                                 {% endif %}
                             </div>
                         </div>
@@ -179,6 +179,7 @@
                             </div>
                             <div class="bottom-review">
                                 <h3>ارسال نظرات</h3>
+                                {% if request.user.is_authenticated == True %}
                                 <form action="" method="post">
                                     {% csrf_token %}
                                     <div class="form-group">
@@ -193,6 +194,9 @@
                                         <img src="{% static "images/shape2.png" %}" alt="Shape" />
                                     </button>
                                 </form>
+                                {% else %}
+                                <p class="alert alert-danger">برای  کامنت گذاشتن پست اول در <a href="{% url 'account:otp' %}">سایت ثبت نام</a> کنید</p>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
