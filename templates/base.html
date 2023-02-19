@@ -1,4 +1,5 @@
 {% load static %}
+{% load render_partial %}
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -24,7 +25,10 @@
         <title>{% block title %}{% endblock %}</title>
         <link rel="icon" type="image/png" href="{% static "images/favicon.png" %}" />
         <link rel="stylesheet" href="{% static "star-ratings/css/star-ratings.css" %}">
+        <link rel="stylesheet" href="{% static "alert/dist/sweetalert.css" %}">
         <script type="text/javascript" src="{% static "star-ratings/js/dist/star-ratings.min.js" %}"></script>
+        <script src= "https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src= "https://cdn.jsdelivr.net/npm/sweetalert2@11.4.8/dist/sweetalert2.all.min.js"></script>
     </head>
     <body>
         <div class="loader">
@@ -308,7 +312,6 @@
 {% block content %}
 
 
-
 {% endblock %}
 <footer class="footer-area pt-100 pb-70">
     <div class="footer-shape">
@@ -498,83 +501,9 @@
     </div>
 </div>
 
-<div class="modal fade modal-right popup-modal" id="exampleModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>سبد خرید <span>2 محصول</span></h2>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="cart-table">
-                    <table class="table">
-                        <tbody>
-                            <tr>
-                                <th scope="row">
-                                    <img src="{% static "images/cart/cart1.png" %}" alt="Cart" />
-                                </th>
-                                <td>
-                                    <h3>صندلی راحت سفید</h3>
-                                    <span class="rate">200 تومان - 1 عدد</span>
-                                </td>
-                                <td>
-                                    <ul class="number">
-                                        <li>
-                                            <span class="minus">-</span>
-                                            <input type="text" value="1" />
-                                            <span class="plus">+</span>
-                                        </li>
-                                    </ul>
-                                </td>
-                                <td>
-                                    <a class="close" href="#">
-                                        <i class="bx bx-x"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">
-                                    <img src="{% static "images/cart/cart2.png" %}" alt="Cart" />
-                                </th>
-                                <td>
-                                    <h3>صندلی زرد</h3>
-                                    <span class="rate">180 تومان - 1 عدد</span>
-                                </td>
-                                <td>
-                                    <ul class="number">
-                                        <li>
-                                            <span class="minus">-</span>
-                                            <input type="text" value="1" />
-                                            <span class="plus">+</span>
-                                        </li>
-                                    </ul>
-                                </td>
-                                <td>
-                                    <a class="close" href="#">
-                                        <i class="bx bx-x"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="total-amount">
-                        <h3>جمع: <span>380 تومان</span></h3>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <form>
-                    <input type="text" class="form-control" placeholder="شماره کوپن تخفیف" />
-                    <button type="submit" class="btn common-btn">
-                        ادامه برای پرداخت
-                        <img src="{% static "images/shape1.png" %}" alt="Shape" />
-                        <img src="{% static "images/shape2.png" %}" alt="Shape" />
-                    </button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
+
+{% render_partial 'cart:cart_main' %}
+
 
 <div class="modal fade modal-right popup-modal wishlist-modal" id="exampleModalWishlist" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
@@ -678,6 +607,10 @@
 <script src="{% static "js/thumb-slide.js" %}"></script>
 
 <script src="{% static "js/custom.js" %}"></script>
+
+<script src="{%  static "alert/dist/sweetalert-dev.js" %}"></script>
+
+
 </body>
 
 </html>

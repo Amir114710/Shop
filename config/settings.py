@@ -43,9 +43,11 @@ INSTALLED_APPS = [
     'home_app.apps.HomeAppConfig',
     'shop.apps.ShopConfig',
     'account.apps.AccountConfig',
+    'cart.apps.CartConfig',
     #My packages:
     'star_ratings',
     'django_cleanup',
+    'django_render_partial',
 ]
 
 MIDDLEWARE = [

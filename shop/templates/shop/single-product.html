@@ -98,24 +98,29 @@
                                     <li>وضعیت: <span>نا موجود</span></li>
                                     {% endif %}
                                 </ul>
-                                <ul class="cart">
-                                    <li>
-                                        <ul class="number">
-                                            <li>
-                                                <span class="minus">-</span>
-                                                <input type="text" value="1" />
-                                                <span class="plus">+</span>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a class="common-btn" h>
-                                            سبد خرید
-                                            <img src="{% static "images/shape1.png" %}" alt="Shape" />
-                                            <img src="{% static "images/shape2.png" %}" alt="Shape" />
-                                        </a>
-                                    </li>
-                                </ul>
+                                <form method="post" action="{% url 'cart:cart_add' products.slug %}" onclick="JSalert()">
+                                    {% csrf_token %}
+                                    <ul class="cart">
+                                        <li>
+                                            <ul class="number">
+                                                <li>
+                                                    <span class="minus">-</span>
+                                                    <input type="text" name="quantity" value="1" />
+                                                    <span class="plus">+</span>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <button style="border: none;background: none;" type="submit">
+                                                <a class="common-btn">
+                                                    سبد خرید
+                                                    <img src="{% static "images/shape1.png" %}" alt="Shape" />
+                                                    <img src="{% static "images/shape2.png" %}" alt="Shape" />
+                                                </a>
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </form>
                                 {% if request.user.is_authenticated == True %}
                                     {% if is_liked %}
                                     <a id="like-post" class="wishlist-btn" href="{% url 'shop:like' products.slug products.id %}"><i class="bx bx-heart">پسندیده شد</i></a>                                   
@@ -162,7 +167,7 @@
                                     {% if comment.parent == None %}
                                     <li>
                                         <img src="{% static "images/main-photo.svg" %}" alt="Blog" />
-                                        <h4>{{ comment.user.username }}</h4>
+                                        <h4>{{ comment.user.phone }}</h4>
                                         <span>{{comment.created}}</span>
                                         <p>
                                             {{comment.message}}
@@ -293,141 +298,11 @@
                 </div>
             </div>
         </div>
-        <div class="modal fade modal-right popup-modal" id="exampleModal" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h2>سبد خرید <span>2 محصول</span></h2>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal
-                        <div class="cart-table">
-                            <table class="table">
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">
-                                            <img src="{% static "images/cart/cart1.png" %}" alt="Cart" />
-                                        </th>
-                                        <td>
-                                            <h3>صندلی راحت سفید</h3>
-                                            <span class="rate">200 تومان - 1 عدد</span>
-                                        </td>
-                                        <td>
-                                            <ul class="number">
-                                                <li>
-                                                    <span class="minus">-</span>
-                                                    <input type="text" value="1" />
-                                                    <span class="plus">+</span>
-                                                </li>
-                                            </ul>
-                                        </td>
-                                        <td>
-                                            <a class="close" href="#">
-                                                <i class="bx bx-x"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">
-                                            <img src="{% static "images/cart/cart2.png" %}" alt="Cart" />
-                                        </th>
-                                        <td>
-                                            <h3>صندلی زرد</h3>
-                                            <span class="rate">180 تومان - 1 عدد</span>
-                                        </td>
-                                        <td>
-                                            <ul class="number">
-                                                <li>
-                                                    <span class="minus">-</span>
-                                                    <input type="text" value="1" />
-                                                    <span class="plus">+</span>
-                                                </li>
-                                            </ul>
-                                        </td>
-                                        <td>
-                                            <a class="close" href="#">
-                                                <i class="bx bx-x"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <div class="total-amount">
-                                <h3>جمع: <span>380 تومان</span></h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <form>
-                            <input type="text" class="form-control" placeholder="شماره کوپن تخفیف" />
-                            <button type="submit" class="btn common-btn">
-                                ادامه برای پرداخت
-                                <img src="{% static "images/shape1.png" %}" alt="Shape" />
-                                <img src="{% static "images/shape2.png" %}" alt="Shape" />
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="modal fade modal-right popup-modal wishlist-modal" id="exampleModalWishlist" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h2>لیست مورد علاقه <span>2 محصول</span></h2>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="cart-table">
-                            <table class="table">
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">
-                                            <img src="{% static "images/cart/cart1.png" %}" alt="Cart" />
-                                        </th>
-                                        <td>
-                                            <h3>صندلی راحت سفید</h3>
-                                            <span class="rate">200 تومان - 1 عدد</span>
-                                        </td>
-                                        <td>
-                                            <a class="common-btn" href="shop.html">
-                                                سبد خرید
-                                                <img src="{% static "images/shape1.png" %}" alt="Shape" />
-                                                <img src="{% static "images/shape2.png" %}" alt="Shape" />
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <a class="close" href="#">
-                                                <i class="bx bx-x"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">
-                                            <img src="{% static "images/cart/cart2.png" %}" alt="Cart" />
-                                        </th>
-                                        <td>
-                                            <h3>صندلی زرد</h3>
-                                            <span class="rate">180 تومان - 1 عدد</span>
-                                        </td>
-                                        <td>
-                                            <a class="common-btn" href="shop.html">
-                                                سبد خرید
-                                                <img src="{% static "images/shape1.png" %}" alt="Shape" />
-                                                <img src="{% static "images/shape2.png" %}" alt="Shape" />
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <a class="close" href="#">
-                                                <i class="bx bx-x"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <p class="message">کالای شما با موفقیت در سبد خرید ثبت شد میتوانید از طریق ایکون بالا ادامه ی ثبت سفارش را انجام دهید با تشکر</p>
+        <script>
+            function JSalert(){
+                    Swal.fire("کالای شما با موفقیت در سبد خرید ثبت شد میتوانید از طریق ایکون بالا ادامه ی ثبت سفارش را انجام دهید با تشکر");   
+                } 
+        </script> 
+        <script>          
 {% endblock %}

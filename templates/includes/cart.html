@@ -1,0 +1,64 @@
+{% load static %}
+<div class="modal fade modal-right popup-modal" id="exampleModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>سبد خرید <span>2 محصول</span></h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="cart-table">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th scope="row">
+                                    <img src="{% static "images/cart/cart1.png" %}" alt="Cart" />
+                                </th>
+                                <td>
+                                    <h3>صندلی {{name}} سفید</h3>
+                                    <span class="rate">200 تومان - 1 عدد</span>
+                                </td>
+                                <td>
+                                </td>
+                                <td>
+                                    <a class="close" href="#">
+                                        <i class="bx bx-x"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">
+                                    <img src="{% static "images/cart/cart2.png" %}" alt="Cart" />
+                                </th>
+                                <td>
+                                    <h3>صندلی زرد</h3>
+                                    <span class="rate">180 تومان - 1 عدد</span>
+                                </td>
+                                <td>
+                                </td>
+                                <td>
+                                    <a class="close" href="#">
+                                        <i class="bx bx-x"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="total-amount">
+                        <h3>جمع: <span>380 تومان</span></h3>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <form>
+                    <input type="text" class="form-control" placeholder="شماره کوپن تخفیف" />
+                    <button type="submit" class="btn common-btn">
+                        ادامه برای پرداخت
+                        <img src="{% static "images/shape1.png" %}" alt="Shape" />
+                        <img src="{% static "images/shape2.png" %}" alt="Shape" />
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

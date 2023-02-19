@@ -1,0 +1,159 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+سبد خرید
+{% endblock %}
+{% block content %}
+<div class="page-title-area">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div class="container">
+                <div class="title-content">
+                    <h2>بررسی</h2>
+                    <ul>
+                        <li>
+                            <a href="index.html">خانه</a>
+                        </li>
+                        <li>
+                            <span>بررسی</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="title-img">
+        <img src="{% static "images/page-title1.jpg" %}" alt="About" />
+        <img src="{% static "images/shape16.png" %}" alt="Shape" />
+        <img src="{% static "images/shape17.png" %}" alt="Shape" />
+        <img src="{% static "images/shape18.png" %}" alt="Shape" />
+    </div>
+</div>
+
+<div class="checkout-area pt-100 pb-70">
+    <div class="container">
+        <div class="section-title">
+            <h2>جزئیات صورتحساب</h2>
+        </div>
+        <form>
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="checkout-billing">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="نام:" />
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="ایمیل:" />
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="شماره تلفن:" />
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="خیابان*" />
+                        </div>
+                        <div class="form-group">
+                            <select>
+                                <option>منطقه*</option>
+                                <option>منطقه 1</option>
+                                <option>منطقه 2</option>
+                                <option>منطقه 3</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <select>
+                                <option>شهر*</option>
+                                <option>تهران</option>
+                                <option>کرج</option>
+                                <option>تبریز</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <select>
+                                <option>کشور*</option>
+                                <option>ایران</option>
+                                <option>آلمان</option>
+                                <option>ترکیه</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="your-notes" rows="4" class="form-control" placeholder="سایر نکات (اختیاری)"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    ارسال به آدرسی دیگر
+                                </label>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn common-btn">
+                                ثبت سفارش
+                                <img src="{% static "images/shape1.png" %}" alt="Shape" />
+                                <img src="{% static "images/shape2.png" %}" alt="Shape" />
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="checkout-order">
+                        <h3>سفارش شما:</h3>
+                        <ul class="align-items-center">
+                            <li>
+                                <img src="{% static "images/checkout/checkout1.png" %}" alt="Checkout" />
+                            </li>
+                            <li>
+                                <h4>صندلی راحت سفید</h4>
+                            </li>
+                            <li>
+                                <span>200 تومان</span>
+                            </li>
+                        </ul>
+                        <ul class="align-items-center">
+                            <li>
+                                <img src="{% static "images/checkout/checkout2.png" %}" alt="Checkout" />
+                            </li>
+                            <li>
+                                <h4>صندلی زرد</h4>
+                            </li>
+                            <li>
+                                <span>180 تومان</span>
+                            </li>
+                        </ul>
+                        <div class="inner">
+                            <h3>هزینه ارسال: <span>15 تومان</span></h3>
+                            <h4>جمع: <span>395 تومان</span></h4>
+                        </div>
+                    </div>
+                    <div class="checkout-method">
+                        <h3>روش پرداخت:</h3>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked />
+                            <label class="form-check-label" for="exampleRadios1">
+                                انتقال مستقیم بانکی
+                            </label>
+                            <p>پرداخت خود را مستقیماً به حساب بانکی ما انجام دهید. لطفا از شناسه سفارش خود به عنوان مرجع پرداخت استفاده کنید. تا زمانی که وجوه حساب شما پاک نشده باشد ، سفارش شما ارسال نمی شود.</p>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" />
+                            <label class="form-check-label" for="exampleRadios2">
+                                پرداخت نقدی هنگام تحویل
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3" />
+                            <label class="form-check-label" for="exampleRadios3">
+                                پی پال
+                            </label>
+                        </div>
+                        <div class="form-check two">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault2" />
+                            <label class="form-check-label" for="flexCheckDefault2">من <a href="terms-conditions.html">شرایط و ضوابط</a> را خوانده و می پذیرم*</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

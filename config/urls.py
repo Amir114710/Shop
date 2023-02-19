@@ -22,6 +22,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path('ratings/', include('star_ratings.urls', namespace='ratings')),
     path('' , include('home_app.urls')),
-    path('shop' , include('shop.urls')),
-    path('account' , include('account.urls')),
+    path('shop/' , include('shop.urls')),
+    path('account/' , include('account.urls')),
+    path('cart/' , include('cart.urls')),
 ] + static(settings.MEDIA_URL , document_root= settings.MEDIA_ROOT)
