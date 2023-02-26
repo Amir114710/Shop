@@ -6,6 +6,8 @@ from django.urls import reverse_lazy
 from django.contrib.auth import login , authenticate , logout
 import ghasedakpack
 import requests
+
+from shop.models import NotificationPersonal
 from .form import RegisterForm , OtpForm , Edite_Profile_Form , AddressCreationForm
 from random import randint
 from .models import OTP, User
@@ -36,9 +38,7 @@ class CheckOtpCode(LoginRequirdMixins , FormView):
             user , is_created = User.objects.get_or_create(phone = otp.phone)
             login(self.request , user)
             otp.delete()
-            next_page = self.request.GET.get('next')
-            if next_page:
-                return redirect(next_page)
+            NotificationPersonal.objects.create(user = self.request.user , content = 'شما با موفقیت در سایت  وارد شدید شدید')        
         else:
             form.add_error(cd['code'] , 'this information is not correct')
         return render(self.request , self.template_name , {'form':form})
@@ -80,7 +80,8 @@ class AddAdressView(AddressRequirdMixins , View):
             next_page = request.GET.get('next')
             if next_page:
                 return redirect(next_page)
-            return render(request , 'account/add_address.html' , {'form':form})        
+            NotificationPersonal.objects.create(user = request.user , content = 'آدرس شما در سایت ثبت شد!')        
+            return render(request , 'account/add_address.html' , {'form':form})
         return render(request , 'account/add_address.html' , {'form':form})
 
     def get(self , request):

@@ -3,9 +3,10 @@ from django.views.generic import View , TemplateView
 from django.urls import reverse
 from account.models import Address
 from cart.cart_module import Cart
-from shop.models import Product
+from shop.models import Notification, NotificationPersonal, Product
 from .cart_module import Cart
 from .models import DiscountCode, Order, OrderItem
+from mixins import LoginRequirdMixins , LogoutRequirdMixins
 
 class CartDetailView(TemplateView):
     template_name = 'includes/cart.html'
@@ -33,12 +34,12 @@ class CartDeleteView(View):
         cart.delete(id)
         return redirect(reverse('shop:main_shop'))
     
-class OrderDetailView(View):
+class OrderDetailView(LoginRequirdMixins , View):
     def get(self , request , pk):
         order = get_object_or_404(Order , id=pk)
         return render(request , 'cart/checkout.html' , {'order':order})
 
-class OrderCreationView(View):
+class OrderCreationView(LoginRequirdMixins , View):
     def get(self , request):
         cart = Cart(request)
         order = Order.objects.create(user = request.user , total_price = cart.total())
@@ -48,7 +49,7 @@ class OrderCreationView(View):
         cart.remove_cart()
         return redirect('cart:order_detail' , order.id)
     
-class ApplyDiscountView(View):
+class ApplyDiscountView(LoginRequirdMixins , View):
     def post(self , request , pk):
         code = request.POST.get('discount_code')
         order = get_object_or_404(Order , id=pk)
@@ -61,11 +62,12 @@ class ApplyDiscountView(View):
         discount_code.save()
         return redirect('cart:order_detail' , order.id)
 
-class ApplyAddress(View):
+class ApplyAddress(LoginRequirdMixins , View):
     def post(self , request , pk):
         order = get_object_or_404(Order , id=pk)
         address = request.POST.get('address')
         print(address)
         order.addresses = address
         order.save()
+        NotificationPersonal.objects.create(user = request.user , content = 'در خواست شما بدرستی ثبت شد')
         return redirect('pay:main_pay' , order.id)

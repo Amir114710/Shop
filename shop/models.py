@@ -109,3 +109,16 @@ class Notification(models.Model):
         verbose_name = 'اعلان'
         verbose_name_plural = 'اعلان ها'
         ordering = ('-created',)
+
+class NotificationPersonal(models.Model):
+    user = models.ForeignKey(User , on_delete=models.CASCADE , related_name='notification_personal' , verbose_name="انتخاب کاربر")
+    content = models.TextField(verbose_name="متن اعلان")
+    created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.content
+
+    class Meta:
+        verbose_name = 'اعلان'
+        verbose_name_plural = 'اعلان های شخصی کاربران'
+        ordering = ('-created',)
