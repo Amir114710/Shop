@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+تماس با ما
+{% endblock %}
+{% block content %}
+<div class="page-title-area">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div class="container">
+                <div class="title-content">
+                    <h2>تماس با ما</h2>
+                    <ul>
+                        <li>
+                            <a href="{% url 'home:main' %}">خانه</a>
+                        </li>
+                        <li>
+                            <span>تماس با ما</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="title-img">
+        <img src="{% static "images/page-title5.jpg" %}" alt="About" />
+        <img src="{% static "images/shape16.png" %}" alt="Shape" />
+        <img src="{% static "images/shape17.png" %}" alt="Shape" />
+        <img src="{% static "images/shape18.png" %}" alt="Shape" />
+    </div>
+</div>
+
+<div class="contact-area pt-100 pb-70">
+    <div class="container">
+        <div class="section-title">
+            <h2>با ما در تماس باشید</h2>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-lg-8">
+                <div id="contactForm2">
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        {{form.errors}}
+                        <div class="row">
+                            <div class="col-6 col-lg-6">
+                                <div class="form-group">
+                                    {{form.username}}
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-lg-6">
+                                <div class="form-group">
+                                    {{form.email}}
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-lg-6">
+                                <div class="form-group">
+                                    {{form.phone_number}}
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-lg-6">
+                                <div class="form-group">
+                                    {{form.subject}}
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    {{form.message}}
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <div class="form-check">
+                                        {{form.is_Accept_terms}}
+                                        <label class="form-check-label" for="flexCheckDefault3"> من همه <a href="terms-conditions.html">شرایط و ضوابط</a> را می پذیرم</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="text-center">
+                                    <button type="submit" class="btn common-btn">
+                                        ارسال پیام
+                                        <img src="{% static "images/shape1.png" %}" alt="Shape" />
+                                        <img src="{% static "images/shape2.png" %}" alt="Shape" />
+                                    </button>
+                                    <div id="msgSubmit" class="h3 text-center hidden"></div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            {% for data in contacts %}
+            <div class="col-sm-6 col-lg-4">
+                <div class="contact-info">
+                    <h3>اطلاعات تماس:</h3>
+                    <ul class="info">
+                        <li>
+                            <i class="flaticon-pin"></i>
+                            <a href="#">{{data.address}}</a>
+                        </li>
+                        <li>
+                            <i class="flaticon-phone-call"></i>
+                            <a href="tel:0217654321">{{data.phone_number}}</a>
+                        </li>
+                        <li>
+                            <i class="flaticon-email"></i>
+                            <a href="#">
+                                <span>{{data.email_address}}</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="social-links">
+                        <ul>
+                            <li>
+                                <a href="{{data.facebook}}" target="_blank">
+                                    <i class="bx bxl-facebook"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{data.twiter}}" target="_blank">
+                                    <i class="bx bxl-twitter"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{data.linkdin}}" target="_blank">
+                                    <i class="bx bxl-linkedin"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

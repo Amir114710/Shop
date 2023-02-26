@@ -58,3 +58,19 @@ class OTP(models.Model):
     class Meta:
         verbose_name = "کد:otp"
         verbose_name_plural = "کد:otp ها"
+
+class Address(models.Model):
+    user = models.ForeignKey(User , on_delete=models.CASCADE , related_name='addresses')
+    fullname = models.CharField(max_length=100)
+    address = models.TextField(null=True , blank=True , verbose_name='ادرس')
+    email = models.EmailField(null=True , blank=True , verbose_name='ایمیل')
+    phone = models.CharField(max_length=12 , verbose_name='تلفن')
+    postal_code = models.CharField(max_length=10)
+
+
+    def __str__(self) -> str:
+        return self.user.phone
+    
+    class Meta:
+        verbose_name = "ادرس"
+        verbose_name_plural = "تنظیمات قسمت ادرس"

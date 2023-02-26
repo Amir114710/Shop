@@ -1,23 +1,49 @@
 from django.db import models
 from account.models import User
 from datetime import datetime
-
 from shop.models import Product
 
-class Cart(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    created_at = models.DateTimeField(default=datetime.now)
+class Order(models.Model):
+    user = models.ForeignKey(User , on_delete=models.CASCADE , related_name='orders' , verbose_name='کاربر')
+    total_price = models.IntegerField(default=0)
+    created_at = models.DateTimeField(auto_now_add=True)
+    is_pay = models.BooleanField(default=False , verbose_name='ایا پرداخت شده است ؟')
+    addresses = models.TextField(blank=True , null=True)
+    image_payed = models.FileField(upload_to='pay/image', null=True , blank=True , verbose_name='عکس پرداخت موفق')
 
-class CartItem(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    quantity = models.IntegerField(default=1)
-    price_ht = models.FloatField(blank=True)
-    cart = models.ForeignKey('Cart', on_delete=models.CASCADE)
+    def __str__(self) -> str:
+        return self.user.phone
+    
+    class Meta:
+        ordering = ("-created_at",)
+        verbose_name = "ثبت درخواست خرید"
+        verbose_name_plural = "تنظیمات قسمت ثبت درخواست خرید ها"
 
-    TAX_AMOUNT = 19.25
+class OrderItem(models.Model):
+    order = models.ForeignKey(Order , on_delete=models.CASCADE , related_name='items' , verbose_name='کالا درحال انجام')
+    product = models.ForeignKey(Product , on_delete=models.CASCADE , related_name='items' , verbose_name='کالا')
+    quantity = models.SmallIntegerField(verbose_name='تعداد')
+    price = models.PositiveIntegerField(verbose_name='قیمت')
 
-    def price_ttc(self):
-        return self.price_ht * (1 + TAX_AMOUNT/100.0)
+    def __str__(self) -> str:
+        return self.order.user.phone
+    
+    class Meta:
+        verbose_name = "پایان ثبت درخواست خرید"
+        verbose_name_plural = "تنظیمات قسمت  پیان ثبت درخواست خرید ها"
 
-    def __str__(self):
-        return  self.client + " - " + self.product
+
+class DiscountCode(models.Model):
+    name = models.CharField(max_length=100 , verbose_name='نام کد تخفیف' , unique=True)
+    discount = models.SmallIntegerField(default=0 , verbose_name='مقدار درصد تفیف')
+    quantity = models.SmallIntegerField(default=1 , verbose_name='تعداد کد تخفیف')
+
+    def __str__(self) -> str:
+        return self.name
+    
+    class Meta:
+        verbose_name = "کد تخفیف"
+        verbose_name_plural = "تنظیمات قسمت  کد های تخفیف"
+
+
+

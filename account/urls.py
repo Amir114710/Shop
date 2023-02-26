@@ -10,5 +10,6 @@ urlpatterns = [
     path('check_otp' , views.CheckOtpCode.as_view() , name="check_otp"),
     path('logout' , views.logout_user , name="logout"),
     path('profile' , views.ProfileView.as_view() , name="profile"),
-    path('edit_profile' , views.profile_edite , name="edit_profile")
+    path('edit_profile' , views.profile_edite , name="edit_profile"),
+    path('add/address' , views.AddAdressView.as_view() , name="add_address")
 ]

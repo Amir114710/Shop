@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}
-سبد خرید
+بررسی
 {% endblock %}
 {% block content %}
 <div class="page-title-area">
@@ -35,120 +35,85 @@
         <div class="section-title">
             <h2>جزئیات صورتحساب</h2>
         </div>
-        <form>
             <div class="row">
                 <div class="col-lg-8">
-                    <div class="checkout-billing">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="نام:" />
-                        </div>
-                        <div class="form-group">
-                            <input type="email" class="form-control" placeholder="ایمیل:" />
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="شماره تلفن:" />
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="خیابان*" />
-                        </div>
-                        <div class="form-group">
-                            <select>
-                                <option>منطقه*</option>
-                                <option>منطقه 1</option>
-                                <option>منطقه 2</option>
-                                <option>منطقه 3</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <select>
-                                <option>شهر*</option>
-                                <option>تهران</option>
-                                <option>کرج</option>
-                                <option>تبریز</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <select>
-                                <option>کشور*</option>
-                                <option>ایران</option>
-                                <option>آلمان</option>
-                                <option>ترکیه</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <textarea id="your-notes" rows="4" class="form-control" placeholder="سایر نکات (اختیاری)"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                                <label class="form-check-label" for="flexCheckDefault">
-                                    ارسال به آدرسی دیگر
-                                </label>
+                    <form action="{% url 'cart:apply_address' order.id %}" method="post">
+                        {% csrf_token %}
+                        <div class="checkout-billing">
+                        {% if request.user.addresses.all %}
+                            <div class="form-group">
+                                <select name="address">
+                                    <option>ادرس*</option>
+                                    {% for address in request.user.addresses.all %}
+                                    <option>{{address.address}}----------{{address.fullname}}----------{{address.phone}}----------{{address.postal_code}}</option>
+                                    {% endfor %}
+                                </select>
                             </div>
+                        {% else %}
+                        <div class="text-center">
+                            <a href="{% url 'account:add_address' %}?next={% url 'cart:order_detail' order.id %}">
+                                <button type="button" class="btn common-btn">
+                                    ثبت آدرس
+                                    <img src="{% static "images/shape1.png" %}" alt="Shape" />
+                                    <img src="{% static "images/shape2.png" %}" alt="Shape" />
+                                </button>
+                            </a>
                         </div>
+                        {% endif %}
+                        <div class="text-center">
+                            <a href="{% url 'account:add_address' %}?next={% url 'cart:order_detail' order.id %}">
+                                <button type="button" class="btn common-btn">
+                                    ثبت ادرس جدید
+                                    <img src="{% static "images/shape1.png" %}" alt="Shape" />
+                                    <img src="{% static "images/shape2.png" %}" alt="Shape" />
+                                </button>
+                            </a>
+                        </div>
+                        <br>
+                            {% if request.user.addresses.all %}
+                            <div class="text-center">
+                                <button type="submit" class="btn common-btn">
+                                    ثبت سفارش
+                                    <img src="{% static "images/shape1.png" %}" alt="Shape" />
+                                    <img src="{% static "images/shape2.png" %}" alt="Shape" />
+                                </button>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </form>
+                    <form action="{% url 'cart:apply_discount' order.id %}" method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="discount_code" placeholder="کد تخفیف" />
+                        </div>
+                        <br>
                         <div class="text-center">
                             <button type="submit" class="btn common-btn">
-                                ثبت سفارش
+                                ثبت کد
                                 <img src="{% static "images/shape1.png" %}" alt="Shape" />
                                 <img src="{% static "images/shape2.png" %}" alt="Shape" />
                             </button>
                         </div>
-                    </div>
+                    </form>
                 </div>
                 <div class="col-lg-4">
                     <div class="checkout-order">
                         <h3>سفارش شما:</h3>
+                        {% for item in order.items.all %}
                         <ul class="align-items-center">
                             <li>
-                                <img src="{% static "images/checkout/checkout1.png" %}" alt="Checkout" />
+                                <img src="{{item.product.image.url}}" alt="Checkout" />
                             </li>
                             <li>
-                                <h4>صندلی راحت سفید</h4>
+                                <h4>{{item.product.title}}</h4>
                             </li>
                             <li>
-                                <span>200 تومان</span>
+                                <span>{{item.product.price}} تومان</span>
                             </li>
                         </ul>
-                        <ul class="align-items-center">
-                            <li>
-                                <img src="{% static "images/checkout/checkout2.png" %}" alt="Checkout" />
-                            </li>
-                            <li>
-                                <h4>صندلی زرد</h4>
-                            </li>
-                            <li>
-                                <span>180 تومان</span>
-                            </li>
-                        </ul>
+                        {% endfor %}
                         <div class="inner">
-                            <h3>هزینه ارسال: <span>15 تومان</span></h3>
-                            <h4>جمع: <span>395 تومان</span></h4>
-                        </div>
-                    </div>
-                    <div class="checkout-method">
-                        <h3>روش پرداخت:</h3>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked />
-                            <label class="form-check-label" for="exampleRadios1">
-                                انتقال مستقیم بانکی
-                            </label>
-                            <p>پرداخت خود را مستقیماً به حساب بانکی ما انجام دهید. لطفا از شناسه سفارش خود به عنوان مرجع پرداخت استفاده کنید. تا زمانی که وجوه حساب شما پاک نشده باشد ، سفارش شما ارسال نمی شود.</p>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" />
-                            <label class="form-check-label" for="exampleRadios2">
-                                پرداخت نقدی هنگام تحویل
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3" />
-                            <label class="form-check-label" for="exampleRadios3">
-                                پی پال
-                            </label>
-                        </div>
-                        <div class="form-check two">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault2" />
-                            <label class="form-check-label" for="flexCheckDefault2">من <a href="terms-conditions.html">شرایط و ضوابط</a> را خوانده و می پذیرم*</label>
+                            <h4>جمع: <span>{{order.total_price}} تومان</span></h4>
                         </div>
                     </div>
                 </div>

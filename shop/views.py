@@ -1,5 +1,7 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import  View , TemplateView , ListView , DetailView
+from django.core.paginator import Paginator
+from contactus.models import Contacts
 from .models import Comments, Like, Product , Category
 
 class ProductView(ListView):
@@ -50,3 +52,11 @@ def like(request , slug , pk):
     except:
         Like.objects.create(products_id=pk , users_id = request.user.id)
     return redirect('shop:shop_detail' , slug)
+
+class SearchBox(TemplateView):
+    queryset = None
+    template_name = "shop/shop.html"
+    def get(self, request, *args, **kwargs):
+        q = request.GET.get('q')
+        queryset =  Product.objects.filter(title__icontains = q)
+        return render(request, self.template_name, {'products': queryset})

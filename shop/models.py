@@ -58,6 +58,7 @@ class Product(models.Model):
         return self.title
 
     class Meta:
+        ordering = ('-created',)
         verbose_name = 'محصولات'
         verbose_name_plural = "تنظیمات قسمت محصولات"
 
@@ -95,3 +96,16 @@ class Like(models.Model):
         verbose_name = "لایک"
         verbose_name_plural = "تنظیمات قسمت لایک ها"
         ordering = ("-created",)
+
+class Notification(models.Model):
+    user = models.ManyToManyField(User , related_name='notifications' , verbose_name="انتخاب کاربر")
+    content = models.TextField(verbose_name="متن اعلان")
+    created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.content
+
+    class Meta:
+        verbose_name = 'اعلان'
+        verbose_name_plural = 'اعلان ها'
+        ordering = ('-created',)

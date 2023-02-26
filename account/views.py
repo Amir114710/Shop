@@ -1,12 +1,12 @@
 from django.shortcuts import render , redirect , reverse
-from django.views.generic import FormView , TemplateView , CreateView
+from django.views.generic import FormView , TemplateView , CreateView , View
 from uuid import uuid4
-from mixins import LoginRequirdMixins , LogoutRequirdMixins
+from mixins import LoginRequirdMixins , LogoutRequirdMixins , AddressRequirdMixins
 from django.urls import reverse_lazy
 from django.contrib.auth import login , authenticate , logout
 import ghasedakpack
 import requests
-from .form import RegisterForm , OtpForm , Edite_Profile_Form
+from .form import RegisterForm , OtpForm , Edite_Profile_Form , AddressCreationForm
 from random import randint
 from .models import OTP, User
 SMS = ghasedakpack.Ghasedak("8534236d76060f342738a94b4ca72c")
@@ -24,7 +24,7 @@ class OtpRegisterationView(LoginRequirdMixins , FormView):
         print(random_code)
         return redirect(reverse('account:check_otp') + f'?token={token}')
 
-class CheckOtpCode(FormView):
+class CheckOtpCode(LoginRequirdMixins , FormView):
     template_name = 'account/otp_form.html'
     form_class = OtpForm
     success_url = reverse_lazy('home_app:home')
@@ -36,7 +36,9 @@ class CheckOtpCode(FormView):
             user , is_created = User.objects.get_or_create(phone = otp.phone)
             login(self.request , user)
             otp.delete()
-            return redirect('/')
+            next_page = self.request.GET.get('next')
+            if next_page:
+                return redirect(next_page)
         else:
             form.add_error(cd['code'] , 'this information is not correct')
         return render(self.request , self.template_name , {'form':form})
@@ -67,3 +69,21 @@ def profile_edite(request):
         return render(request , 'account/edit_profile.html' , {'form':form})
     else:
         return redirect('home_app:home')
+    
+class AddAdressView(AddressRequirdMixins , View):
+    def post(self , request):
+        form = AddressCreationForm(request.POST)
+        if form.is_valid():
+            address = form.save(commit=False)
+            address.user = request.user
+            address.save()
+            next_page = request.GET.get('next')
+            if next_page:
+                return redirect(next_page)
+            return render(request , 'account/add_address.html' , {'form':form})        
+        return render(request , 'account/add_address.html' , {'form':form})
+
+    def get(self , request):
+        form = AddressCreationForm()
+        return render(request , 'account/add_address.html' , {'form':form})
+         

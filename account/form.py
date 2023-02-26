@@ -2,7 +2,7 @@ from django import forms
 from django.core.exceptions import ValidationError
 from django.core import validators
 
-from account.models import User
+from account.models import Address, User
 
 
 class RegisterForm(forms.Form):
@@ -34,3 +34,9 @@ class Edite_Profile_Form(forms.ModelForm):
             'phone' :forms.TextInput(attrs={'class':'email-input' , 'placeholder':'phone'}),
             'email' :forms.TextInput(attrs={'class':'email-input' , 'placeholder':'email'}),
         }
+
+class AddressCreationForm(forms.ModelForm):
+    user = forms.IntegerField(required=False)
+    class Meta:
+        model = Address
+        exclude = '__all__'

@@ -23,6 +23,8 @@ urlpatterns = [
     path('ratings/', include('star_ratings.urls', namespace='ratings')),
     path('' , include('home_app.urls')),
     path('shop/' , include('shop.urls')),
-    path('account/' , include('account.urls')),
+    path('account' , include('account.urls')),
     path('cart/' , include('cart.urls')),
+    path('contactus/' , include('contactus.urls')),
+    path('pay/' , include('pay.urls')),
 ] + static(settings.MEDIA_URL , document_root= settings.MEDIA_ROOT)

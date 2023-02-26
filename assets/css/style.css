@@ -137,6 +137,81 @@ button:focus {
     margin-bottom: 30px;
     margin-top: -5px;
 }
+/* Style The Dropdown Button */
+.dropbtn {
+    background:none;
+    color: rgb(255, 255, 255);
+    padding: none;
+    font-size: 17px;
+    border:none;
+    cursor: pointer;
+    width: 3.3em;
+    height: 2em;
+    margin-left: -0.6em;
+}
+  
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    display: inline-block;
+}
+  
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    margin-left:-5em ;
+    background-color: #ffffff;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    transition: 0.5s linear ;
+}
+  
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+  
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #f1f1f1}
+  
+  /* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+#dropbtn-content{
+    width: 20em!important;
+    left: -5em;
+}
+
+/* .notification-image{
+width: 0.5em;
+height: 0.5em;
+} */
+.dropdown{
+    margin-right: -1em;
+}
+.content-notification{
+    width: 15em!important; 
+    height: 3em;
+    border: 1px solid rgb(255, 255, 255);
+    color: #13131A;
+    position: absolute;
+    transition: 0.5s linear;
+    /* left: 5em;
+    top: 0.5em; */
+}
+.notification-beautiful{
+    width: 100%;
+    height: 100%;
+    background-color: #1b202d;
+    padding: 5em!important;
+    border: 1px solid white;
+    box-shadow: 5px 5px 5px 5px rgb(41, 55, 59)
+}
 .section-title h2 {
     margin-bottom: 0;
     font-size: 25px;
@@ -4158,10 +4233,16 @@ button:focus {
 .contact-area #contactForm {
     margin-bottom: 30px;
 }
+.contact-area #contactForm2 {
+    margin-bottom: 30px;
+}
 .contact-area #contactForm .form-group {
     margin-bottom: 15px;
 }
-.contact-area #contactForm .form-group .form-control {
+.contact-area #contactForm2 .form-group {
+    margin-bottom: 15px;
+}
+.contact-area #contactForm2 .form-group .form-control {
     border-radius: 5px;
     height: 50px;
     border: 0;
@@ -4172,7 +4253,7 @@ button:focus {
     -webkit-box-shadow: none;
     box-shadow: none;
 }
-.contact-area #contactForm .form-group textarea {
+.contact-area #contactForm2 .form-group textarea {
     height: auto !important;
     padding-top: 13px;
 }

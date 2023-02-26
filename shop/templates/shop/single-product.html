@@ -123,12 +123,12 @@
                                 </form>
                                 {% if request.user.is_authenticated == True %}
                                     {% if is_liked %}
-                                    <a id="like-post" class="wishlist-btn" href="{% url 'shop:like' products.slug products.id %}"><i class="bx bx-heart">پسندیده شد</i></a>                                   
+                                    <a id="like-post" class="wishlist-btn" href="{% url 'shop:like' products.slug products.id %}"><i class="fa-solid fa-heart"></i></a>                                   
                                     {% else %}
-                                    <a id="like-post" class="wishlist-btn" href="{% url 'shop:like' products.slug products.id %}"><i class="bx bx-heart">مورد علاقه</i></a></a>
+                                    <a id="like-post" class="wishlist-btn" href="{% url 'shop:like' products.slug products.id %}"><i class="fa-regular fa-heart"></i></a></a>
                                     {% endif %}
                                 {% else %}
-                                <p class="alert alert-danger">برای لایک کردن پست اول در <a href="{% url 'account:otp' %}">سایت ثبت نام</a> کنید</p>
+                                <p class="alert alert-danger">برای لایک کردن پست اول در <a href="{% url 'account:otp' %}?next={% url 'shop:shop_detail' products.slug %}">سایت ثبت نام</a> کنید</p>
                                 {% endif %}
                             </div>
                         </div>
@@ -200,7 +200,7 @@
                                     </button>
                                 </form>
                                 {% else %}
-                                <p class="alert alert-danger">برای  کامنت گذاشتن پست اول در <a href="{% url 'account:otp' %}">سایت ثبت نام</a> کنید</p>
+                                <p class="alert alert-danger">برای  کامنت گذاشتن پست اول در <a href="{% url 'account:otp' %}?next={% url 'shop:shop_detail' products.slug %}">سایت ثبت نام</a> کنید</p>
                                 {% endif %}
                             </div>
                         </div>
@@ -298,7 +298,6 @@
                 </div>
             </div>
         </div>
-        <p class="message">کالای شما با موفقیت در سبد خرید ثبت شد میتوانید از طریق ایکون بالا ادامه ی ثبت سفارش را انجام دهید با تشکر</p>
         <script>
             function JSalert(){
                     Swal.fire("کالای شما با موفقیت در سبد خرید ثبت شد میتوانید از طریق ایکون بالا ادامه ی ثبت سفارش را انجام دهید با تشکر");   

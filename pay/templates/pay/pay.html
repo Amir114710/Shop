@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+بررسی
+{% endblock %}
+{% block content %}
+<div class="page-title-area">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div class="container">
+                <div class="title-content">
+                    <h2>پرداخت بصورت کارت به کارت</h2>
+                    <ul>
+                        <li>
+                            <a href="index.html">خانه</a>
+                        </li>
+                        <li>
+                            <span>پرداخت بصورت کارت به کارت</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="title-img">
+        <img src="{% static "images/page-title1.jpg" %}" alt="About" />
+        <img src="{% static "images/shape16.png" %}" alt="Shape" />
+        <img src="{% static "images/shape17.png" %}" alt="Shape" />
+        <img src="{% static "images/shape18.png" %}" alt="Shape" />
+    </div>
+</div>
+
+<div class="checkout-area pt-100 pb-70">
+    <div class="container">
+        <div class="section-title">
+            <h2>جزئیات صورتحساب</h2>
+        </div>
+            <div class="row">
+                <div class="col-lg-8">
+                    <form action="{% url 'pay:payed' order.id %}" enctype="multipart/form-data" method="post">
+                        {%  csrf_token %}
+                        <div class="checkout-billing">
+                            <div class="form-group">
+                                <label for="" style="font-size: large;margin-bottom: 1em;color: rgb(0, 0, 0);">عکس واریزی مبلغ را وارد کنید</label>
+                                <br>
+                                <input type="file" name="image" class="form-control" placeholder="عکس واریزی مبلغ را وارد  کنید :" required="True" />
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn common-btn">
+                                    ارسال 
+                                    <img src="{% static "images/shape1.png" %}" alt="Shape" />
+                                    <img src="{% static "images/shape2.png" %}" alt="Shape" />
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-lg-4">
+                    <div class="checkout-order">
+                        <h3> اطلاعات حساب:</h3>
+                        {% for item in account %}
+                            <p>
+                                <h6>شماره حساب: </h6><h4>{{item.number_of_cart}}</h4>
+                            </p>
+                            <p>
+                                <span>نام دارند کارت: {{item.owner_of_cart}}</span>
+                            </p>
+                        {% endfor %}
+                    </div>
+                    <div class="checkout-order">
+                        <h3>سفارش شما:</h3>
+                        {% for item in order.items.all %}
+                        <ul class="align-items-center">
+                            <li>
+                                <img src="{{item.product.image.url}}" alt="Checkout" />
+                            </li>
+                            <li>
+                                <h4>{{item.product.title}}</h4>
+                            </li>
+                            <li>
+                                <span>{{item.product.price}} تومان</span>
+                            </li>
+                        </ul>
+                        {% endfor %}
+                        <div class="inner">
+                            <h4>جمع: <span>{{order.total_price}} تومان</span></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

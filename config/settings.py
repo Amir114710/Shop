@@ -44,10 +44,13 @@ INSTALLED_APPS = [
     'shop.apps.ShopConfig',
     'account.apps.AccountConfig',
     'cart.apps.CartConfig',
+    'contactus.apps.ContactusConfig',
+    'pay.apps.PayConfig',
     #My packages:
     'star_ratings',
     'django_cleanup',
     'django_render_partial',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
@@ -73,6 +76,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "context_processors.context_processors.category",
             ],
         },
     },
