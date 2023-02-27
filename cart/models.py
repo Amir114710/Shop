@@ -5,11 +5,12 @@ from shop.models import Product
 
 class Order(models.Model):
     user = models.ForeignKey(User , on_delete=models.CASCADE , related_name='orders' , verbose_name='کاربر')
-    total_price = models.IntegerField(default=0)
+    total_price = models.IntegerField(default=0, verbose_name='قیمت کلی')
     created_at = models.DateTimeField(auto_now_add=True)
     is_pay = models.BooleanField(default=False , verbose_name='ایا پرداخت شده است ؟')
-    addresses = models.TextField(blank=True , null=True)
+    addresses = models.TextField(blank=True , null=True, verbose_name='آدرس کاربر')
     image_payed = models.FileField(upload_to='pay/image', null=True , blank=True , verbose_name='عکس پرداخت موفق')
+    DeliveryDate = models.DateTimeField(null=True , blank=True , verbose_name='تاریخ تحویل محصول')
 
     def __str__(self) -> str:
         return self.user.phone

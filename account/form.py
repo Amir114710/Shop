@@ -1,7 +1,8 @@
 from django import forms
 from django.core.exceptions import ValidationError
 from django.core import validators
-
+from captcha.fields import ReCaptchaField
+from captcha.widgets import ReCaptchaV2Checkbox
 from account.models import Address, User
 
 
@@ -17,7 +18,7 @@ class RegisterForm(forms.Form):
 
 class OtpForm(forms.Form):
     code = forms.CharField(widget= forms.PasswordInput(attrs={'class': 'form-control' , 'placeholder':'کد ارسال شده :'}) , validators=[validators.MaxLengthValidator(4)])
-
+    captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox , required = True)
     def clean_code(self):
         code = self.cleaned_data.get("code")
         if len(code)<4:

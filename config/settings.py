@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'django_cleanup',
     'django_render_partial',
     'widget_tweaks',
+    'captcha',
 ]
 
 MIDDLEWARE = [
@@ -145,3 +146,7 @@ STAR_RATINGS_RERATE = True
 STAR_RATINGS_ANONYMOUS = True
 
 AUTH_USER_MODEL = 'account.User'
+
+
+RECAPTCHA_PUBLIC_KEY = '6Ld_LLckAAAAANBdRgEWV-AgOMgNaiPPApdZKzux'
+RECAPTCHA_PRIVATE_KEY = '6Ld_LLckAAAAALueIXP6TFbSgdmyfn2yYzYsn9ic'

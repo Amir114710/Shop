@@ -6,7 +6,7 @@ from cart.cart_module import Cart
 from shop.models import Notification, NotificationPersonal, Product
 from .cart_module import Cart
 from .models import DiscountCode, Order, OrderItem
-from mixins import LoginRequirdMixins , LogoutRequirdMixins
+from mixins import AddressRequirdMixins, LoginRequirdMixins , LogoutRequirdMixins
 
 class CartDetailView(TemplateView):
     template_name = 'includes/cart.html'
@@ -15,7 +15,9 @@ class CartDetailView(TemplateView):
         context = super().get_context_data(**kwargs)
         context['cart'] = Cart(self.request)
         if self.request.user.is_authenticated == True:
-            context['like'] = self.request.user.likes.all()[:2]
+            context['like'] = self.request.user.likes.all()[:5]
+        if self.request.user.is_authenticated == True:
+            context['order'] = self.request.user.orders.all()
         else:
             pass
         return context
@@ -34,12 +36,12 @@ class CartDeleteView(View):
         cart.delete(id)
         return redirect(reverse('shop:main_shop'))
     
-class OrderDetailView(LoginRequirdMixins , View):
+class OrderDetailView(AddressRequirdMixins , View):
     def get(self , request , pk):
         order = get_object_or_404(Order , id=pk)
         return render(request , 'cart/checkout.html' , {'order':order})
 
-class OrderCreationView(LoginRequirdMixins , View):
+class OrderCreationView(AddressRequirdMixins , View):
     def get(self , request):
         cart = Cart(request)
         order = Order.objects.create(user = request.user , total_price = cart.total())
@@ -49,7 +51,7 @@ class OrderCreationView(LoginRequirdMixins , View):
         cart.remove_cart()
         return redirect('cart:order_detail' , order.id)
     
-class ApplyDiscountView(LoginRequirdMixins , View):
+class ApplyDiscountView(AddressRequirdMixins , View):
     def post(self , request , pk):
         code = request.POST.get('discount_code')
         order = get_object_or_404(Order , id=pk)
@@ -62,7 +64,7 @@ class ApplyDiscountView(LoginRequirdMixins , View):
         discount_code.save()
         return redirect('cart:order_detail' , order.id)
 
-class ApplyAddress(LoginRequirdMixins , View):
+class ApplyAddress(AddressRequirdMixins , View):
     def post(self , request , pk):
         order = get_object_or_404(Order , id=pk)
         address = request.POST.get('address')

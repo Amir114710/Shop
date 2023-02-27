@@ -149,6 +149,12 @@
                                     </button>
                                 </li>
                                 <li>
+                                    <button type="button" class="btn wishlist" data-bs-toggle="modal" data-bs-target="#exampleModalOrder" data-bs-whatever="@mdo">
+                                        <i class="fa-solid fa-signal" style="font-size: 18px;position: relative;top: -0.3em;"></i>
+                                        <span style="margin-top: -0.2em;">{% if request.user.is_authenticated == True %}{{request.user.orders.count}}{% endif %}</span>
+                                    </button>
+                                </li>
+                                <li>
                                     {% if request.user.is_authenticated == False %}
                                     <a class="join" href="{% url 'account:otp' %}">
                                         <i class="flaticon-round-account-button-with-user-inside"></i>
@@ -176,8 +182,8 @@
 
             <div class="main-nav">
                 <div class="container-fluid">
-                    <nav class="navbar navbar-expand-md navbar-light">
-                        <div class="left">
+                    <nav class="navbar navbar-expand-md navbar-light" style="margin-left: 11em;">
+                        <div class="center">
                             <select>
                                 <option>همه دسته بندی</option>
                                 {% for item in category %}
@@ -200,9 +206,6 @@
                                     <a href="{% url 'contactus:contact_main' %}" class="nav-link {% if request.resolver_match.url_name == 'contact_main'%}active{% endif %}">تماس با ما</a>
                                 </li>
                             </ul>
-                            <div class="side-nav">
-                                <h4>تخفیف <span>50%</span> در جمعه سیاه دریافت کنید <a href="products-on-sale.html">مشاهده محصولات در تخفیف</a></h4>
-                            </div>
                         </div>
                     </nav>
                 </div>

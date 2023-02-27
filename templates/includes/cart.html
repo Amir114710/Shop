@@ -102,3 +102,49 @@
         </div>
     </div>
 </div>
+<div class="modal fade modal-right popup-modal wishlist-modal" id="exampleModalOrder" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2> سفارش ها <span>محصولات</span></h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            {% if request.user.is_authenticated == True %}
+            <div class="modal-body">
+                <div class="cart-table">
+                    <table class="table">
+                        <tbody>
+                            {% for item in order %}
+                            <tr>
+                                <td>
+                                    <h3>{{item.addresses}}</h3>
+                                    <span class="rate">{{item.total_price}} تومان - {% if item.is_pay %} پرداخت شده {% else %} هنوز پرداهت نشده است  {% endif %}</span>
+                                </td>
+                                <td>
+                                    <h3>تاریخ تحویل محصول : {% if item.DeliveryDate %} {{item.DeliveryDate}} {% else %} ----- {% endif %}</h3>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            {% else %}
+            <div class="modal-body">
+                <div class="cart-table">
+                    <table class="table">
+                        <tbody>
+                                <tr>
+                                    <td>
+                                        <h3>لطفا اول در سایت <a href="{% url 'account:otp' %}؟next={% url 'shop:main_shop'%}">ثبت نام</a> کنید</h3>
+                                    </td>
+                                </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
