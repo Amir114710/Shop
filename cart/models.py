@@ -31,7 +31,7 @@ class OrderItem(models.Model):
     
     class Meta:
         verbose_name = "پایان ثبت درخواست خرید"
-        verbose_name_plural = "تنظیمات قسمت  پیان ثبت درخواست خرید ها"
+        verbose_name_plural = "تنظیمات قسمت  پایان ثبت درخواست خرید ها"
 
 
 class DiscountCode(models.Model):

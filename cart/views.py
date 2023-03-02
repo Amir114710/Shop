@@ -17,7 +17,7 @@ class CartDetailView(TemplateView):
         if self.request.user.is_authenticated == True:
             context['like'] = self.request.user.likes.all()[:5]
         if self.request.user.is_authenticated == True:
-            context['order'] = self.request.user.orders.all()
+            context['orders'] = self.request.user.orders.all()
         else:
             pass
         return context

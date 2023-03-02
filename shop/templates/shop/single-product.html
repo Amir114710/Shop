@@ -128,7 +128,7 @@
                                     <a id="like-post" class="wishlist-btn" href="{% url 'shop:like' products.slug products.id %}"><i class="fa-regular fa-heart"></i></a></a>
                                     {% endif %}
                                 {% else %}
-                                <p class="alert alert-danger">برای لایک کردن پست اول در <a href="{% url 'account:otp' %}?next={% url 'shop:shop_detail' products.slug %}">سایت ثبت نام</a> کنید</p>
+                                <p class="alert alert-danger">برای لایک کردن پست اول در <a href="{% url 'account:otp' %}">سایت ثبت نام</a> کنید</p>
                                 {% endif %}
                             </div>
                         </div>
@@ -200,7 +200,7 @@
                                     </button>
                                 </form>
                                 {% else %}
-                                <p class="alert alert-danger">برای  کامنت گذاشتن پست اول در <a href="{% url 'account:otp' %}?next={% url 'shop:shop_detail' products.slug %}">سایت ثبت نام</a> کنید</p>
+                                <p class="alert alert-danger">برای  کامنت گذاشتن پست اول در <a href="{% url 'account:otp' %}">سایت ثبت نام</a> کنید</p>
                                 {% endif %}
                             </div>
                         </div>

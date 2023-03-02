@@ -38,7 +38,8 @@ class CheckOtpCode(LoginRequirdMixins , FormView):
             user , is_created = User.objects.get_or_create(phone = otp.phone)
             login(self.request , user)
             otp.delete()
-            NotificationPersonal.objects.create(user = self.request.user , content = 'شما با موفقیت در سایت  وارد شدید شدید')        
+            NotificationPersonal.objects.create(user = self.request.user , content = 'شما با موفقیت در سایت  وارد شدید شدید') 
+            return redirect('home:main')       
         else:
             form.add_error(cd['code'] , 'this information is not correct')
         return render(self.request , self.template_name , {'form':form})

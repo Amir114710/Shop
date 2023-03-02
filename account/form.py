@@ -18,7 +18,7 @@ class RegisterForm(forms.Form):
 
 class OtpForm(forms.Form):
     code = forms.CharField(widget= forms.PasswordInput(attrs={'class': 'form-control' , 'placeholder':'کد ارسال شده :'}) , validators=[validators.MaxLengthValidator(4)])
-    captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox , required = True)
+    # captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox , required = True)
     def clean_code(self):
         code = self.cleaned_data.get("code")
         if len(code)<4:
