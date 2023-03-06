@@ -75,7 +75,7 @@
                                         <img src="{{item.products.image.url}}" alt="Cart" />
                                     </th>
                                     <td>
-                                        <h3>{{item.products.title}}</h3>
+                                        <a href="{% url 'shop:shop_detail' item.products.slug %}"><h3>{{item.products.title}}</h3></a>
                                         <span class="rate">{{item.products.price}} تومان </span>
                                     </td>
                                 </tr>

@@ -4905,3 +4905,9 @@ height: 0.5em;
 .go-top.two {
     color: #434e6e;
 }
+/* edite-profile */
+#favorite-profile{
+    background-color: white;
+    text-align: center;
+    border-radius: 10px;
+}

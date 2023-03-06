@@ -68,8 +68,7 @@ class ApplyAddress(AddressRequirdMixins , View):
     def post(self , request , pk):
         order = get_object_or_404(Order , id=pk)
         address = request.POST.get('address')
-        print(address)
         order.addresses = address
         order.save()
-        NotificationPersonal.objects.create(user = request.user , content = 'در خواست شما بدرستی ثبت شد')
+        NotificationPersonal.objects.create(user = request.user , content = 'در خواست شما به درستی ثبت شد')
         return redirect('pay:main_pay' , order.id)

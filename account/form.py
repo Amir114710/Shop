@@ -28,12 +28,12 @@ class OtpForm(forms.Form):
 class Edite_Profile_Form(forms.ModelForm):
     class Meta:
         model=User
-        fields=['Full_name', 'username' , 'email' , 'phone' , 'image']
+        fields=['Full_name', 'username' , 'email' , 'phone']
         widgets={
-            'username':forms.TextInput(attrs={'class':'email-input' , 'placeholder':'username'}),
-            'Full_name' :forms.TextInput(attrs={'class':'email-input' , 'placeholder':'Fullname'}),
-            'phone' :forms.TextInput(attrs={'class':'email-input' , 'placeholder':'phone'}),
-            'email' :forms.TextInput(attrs={'class':'email-input' , 'placeholder':'email'}),
+            'username':forms.TextInput(attrs={'class': 'form-control' , 'placeholder':'نام کاربری'}),
+            'Full_name' :forms.TextInput(attrs={'class': 'form-control' , 'placeholder':'نام و نام خانوادگی'}),
+            'phone' :forms.TextInput(attrs={'class': 'form-control' , 'placeholder':'شماره تلفن'}),
+            'email' :forms.TextInput(attrs={'class': 'form-control' , 'placeholder':'ایمیل'}),
         }
 
 class AddressCreationForm(forms.ModelForm):
