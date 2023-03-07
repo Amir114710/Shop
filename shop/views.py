@@ -36,7 +36,7 @@ class ProductDetail(DetailView):
         Comments.objects.create(message=message, parent_id=parent_id , products=products , user=request.user)
         return redirect('shop:shop_detail' , slug)
 
-class Category_details(View):
+class CategoryDetails(View):
     queryset = None
     template_name = 'shop/shop.html'
     def get(self, request , pk):
@@ -60,3 +60,4 @@ class SearchBox(TemplateView):
         q = request.GET.get('q')
         queryset =  Product.objects.filter(title__icontains = q)
         return render(request, self.template_name, {'products': queryset})
+    

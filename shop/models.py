@@ -1,3 +1,4 @@
+from ckeditor.fields import RichTextField
 from django.db import models
 from django.utils.text import slugify
 from account.models import User
@@ -33,7 +34,7 @@ class Product(models.Model):
     title = models.CharField(max_length=150 , null=True , blank=True , verbose_name="نام کالا")
     english_title = models.CharField(max_length=150 , null=True , blank=True , verbose_name="نام اینگلیسی کالا")
     slug = models.SlugField(null=True , blank=True)
-    discription = models.TextField(null=True , blank=True , verbose_name="توضیحات کوتاه")
+    discription = RichTextField(null=True , blank=True , verbose_name="توضیحات کوتاه")
     price = models.SmallIntegerField(null=True , blank=True , verbose_name="قیمت کالا")
     code = models.SmallIntegerField(null=True , blank=True , verbose_name="کد کالا" , unique=True)
     category = models.ManyToManyField(Category , verbose_name="دسته بندی محصول" , related_name="products")

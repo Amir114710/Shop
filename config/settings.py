@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    'ckeditor',
+    'ckeditor_uploader',
     #My apps:
     'home_app.apps.HomeAppConfig',
     'shop.apps.ShopConfig',
@@ -52,7 +54,6 @@ INSTALLED_APPS = [
     'django_render_partial',
     'widget_tweaks',
     'captcha',
-    'ckeditor',
 ]
 
 MIDDLEWARE = [
@@ -122,7 +123,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = "fa-ir"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = 'Asia/Tehran'
 
 USE_I18N = True
 
@@ -137,6 +138,15 @@ STATICFILES_DIRS = [path.join(BASE_DIR, 'assets')]
 MEDIA_URL = 'media/'
 MEDIA_ROOT = path.join(BASE_DIR, 'media')
 STATIC_ROOT = path.join(BASE_DIR, 'static')
+CKEDITOR_UPLOAD_PATH = 'uploadFiles'
+
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Advanced',
+    },
+}
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
