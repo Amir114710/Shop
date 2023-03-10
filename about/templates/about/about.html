@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+درباره ما
+{% endblock %}
+{% block content %}
+<div class="page-title-area">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div class="container">
+                <div class="title-content">
+                    <h2>درباره ما</h2>
+                    <ul>
+                        <li>
+                            <a href="{% url 'home:main' %}">خانه</a>
+                        </li>
+                        <li>
+                            <span>درباره ما</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="title-img">
+        <img src="{% static "images/page-title1.jpg" %}" alt="About" />
+        <img src="{% static "images/shape16.png" %}" alt="Shape" />
+        <img src="{% static "images/shape17.png" %}" alt="Shape" />
+        <img src="{% static "images/shape18.png" %}" alt="Shape" />
+    </div>
+</div>
+
+<section class="about-area pt-100 pb-70">
+    <div class="container">
+        {% for item in about %}
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="about-content">
+                    <div class="top">
+                        <h2>درباره فروشگاه ما</h2>
+                        <p>
+                            {{item.about_shop|safe}}
+                        </p>
+                    </div>
+                    <div class="middle">
+                        <a class="common-btn" href="{% url 'shop:main_shop' %}">
+                            خرید کنید
+                            <img src="{% static "images/shape1.png" %}" alt="Shape" />
+                            <img src="{% static "images/shape2.png" %}" alt="Shape" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="about-img">
+                    <img src="{{item.image1.url}}" alt="About" />
+                    <img src="{{item.image2.url}}" alt="About" />
+                    <img src="{{item.image3.url}}" alt="About" />
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<div class="buy-area">
+    <div class="buy-shape">
+        <img src="{% static "images/shape3.png" %}" alt="Shape" />
+    </div>
+    {% for item in poster_about %}
+    <div class="container-fluid p-0">
+        <div class="row m-0 align-items-center">
+            <div class="col-lg-6 p-0">
+                <div class="buy-img">
+                    <img src="{{item.products.image.url}}" alt="Buy" />
+                </div>
+            </div>
+            <div class="col-lg-6 p-0">
+                <div class="buy-content ptb-100">
+                    <h2>بهترین مبلمان را با قیمت ارزان تر بخرید</h2>
+                    <p>{{item.products.title}}</p>
+                    <ul>
+                        <li>{{item.products.price}} تومان</li>
+                    </ul>
+                    <a class="common-btn" href="{% url 'shop:main_shop'  %}">
+                        خرید کنید
+                        <img src="{% static "images/shape1.png" %}" alt="Shape" />
+                        <img src="{% static "images/shape2.png" %}" alt="Shape" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<div class="support-area pt-100 pb-70">
+    <div class="container">
+        <div class="row justify-content-center">
+            {% for item in PropertyShop %}
+            <div class="col-sm-6 col-lg-4">
+                <div class="support-item">
+                    <i class="{{item.fontasswoem}}"></i>
+                    <h3>{{item.title}}</h3>
+                    <p>{{item.content}}</p>
+                    <img src="{% static "images/support-shape1.png" %}" alt="Shape" />
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<div class="testimonials-area ptb-100">
+    <div class="container">
+        <div class="section-title">
+            <h2>نظرات مشتریان ما</h2>
+        </div>
+        <div class="testimonials-slider owl-theme owl-carousel">
+            {% for item in contactsus %}
+            <div class="testimonials-item">
+                <i class="flaticon-quote"></i>
+                <p>{{item.message}}</p>
+                <h3>{{item.username}}</h3>
+                <img src="{% static "images/main-photo.svg" %}" alt="Testimonial" />
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

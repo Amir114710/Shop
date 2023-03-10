@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'cart.apps.CartConfig',
     'contactus.apps.ContactusConfig',
     'pay.apps.PayConfig',
+    'about.apps.AboutConfig',
     #My packages:
     'star_ratings',
     'django_cleanup',

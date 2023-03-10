@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+شرایط و ضوابط
+{% endblock %}
+{% block content %}
+<div class="page-title-area">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div class="container">
+                <div class="title-content">
+                    <h2>شرایط و ضوابط</h2>
+                    <ul>
+                        <li>
+                            <a href="{% url 'home:main' %}">خانه</a>
+                        </li>
+                        <li>
+                            <span>شرایط و ضوابط</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="title-img">
+        <img src="{% static "images/page-title1.jpg" %}" alt="About" />
+        <img src="{% static "images/shape16.png" %}" alt="Shape" />
+        <img src="{% static "images/shape17.png" %}" alt="Shape" />
+        <img src="{% static "images/shape18.png" %}" alt="Shape" />
+    </div>
+</div>
+
+<div class="rules-area ptb-100">
+    <div class="container">
+        {% for data in acceptterms %}
+        <div class="rules-item">
+            <div class="inner">
+                <h3>1. شرایط و ضوابط</h3>
+                <p>
+                    {{data.discription_of_acceptterms|safe}}
+                </p>
+            </div>
+            <div class="inner">
+                <h3>2. هدف از این شرایط و ضوابط</h3>
+                <ul>
+                    <li><span></span>{{data.target_of_acceptterms1}}</li>
+                    <li><span></span>{{data.target_of_acceptterms2}}</li>
+                    <li><span></span>{{data.target_of_acceptterms3}}</li>
+                    <li><span></span>{{data.target_of_acceptterms4}}</li>
+                    <li><span></span>{{data.target_of_acceptterms5}}</li>
+                    <li><span></span>{{data.target_of_acceptterms6}}</li>
+                </ul>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

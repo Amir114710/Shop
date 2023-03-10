@@ -2,7 +2,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import  View , TemplateView , ListView , DetailView
 from django.core.paginator import Paginator
 from contactus.models import Contacts
-from .models import Comments, Like, Product , Category
+from .models import Comments, Like, Product , Category , AcceptTermsModel
 
 class ProductView(ListView):
     template_name = "shop/shop.html"
@@ -61,3 +61,10 @@ class SearchBox(TemplateView):
         queryset =  Product.objects.filter(title__icontains = q)
         return render(request, self.template_name, {'products': queryset})
     
+
+class AcceptTerms(TemplateView):
+    template_name = 'shop/terms-conditions.html'
+    def get_context_data(self, **kwargs):
+        context =  super().get_context_data(**kwargs)
+        context['acceptterms'] = AcceptTermsModel.objects.all()
+        return context

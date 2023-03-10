@@ -9,4 +9,5 @@ urlpatterns = [
     path('category/<int:pk>', views.CategoryDetails.as_view() , name='category_detail'),
     path('like/<slug:slug>/<int:pk>' , views.like , name='like'),
     path('search' , views.SearchBox.as_view() , name='search'),
+    path('acceptterms' , views.AcceptTerms.as_view() , name='acceptterms'),
 ]

@@ -26,13 +26,13 @@ class OtpForm(forms.Form):
         return code
 
 class Edite_Profile_Form(forms.ModelForm):
+    phone = forms.CharField(widget = forms.TextInput(attrs={'class': 'form-control' , 'placeholder':'شماره تلفن'}) , validators=[validators.MaxLengthValidator(11)] , required=False)
     class Meta:
         model=User
         fields=['Full_name', 'username' , 'email' , 'phone']
         widgets={
             'username':forms.TextInput(attrs={'class': 'form-control' , 'placeholder':'نام کاربری'}),
             'Full_name' :forms.TextInput(attrs={'class': 'form-control' , 'placeholder':'نام و نام خانوادگی'}),
-            'phone' :forms.TextInput(attrs={'class': 'form-control' , 'placeholder':'شماره تلفن'}),
             'email' :forms.TextInput(attrs={'class': 'form-control' , 'placeholder':'ایمیل'}),
         }
 

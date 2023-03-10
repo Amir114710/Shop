@@ -34,7 +34,7 @@ class Product(models.Model):
     title = models.CharField(max_length=150 , null=True , blank=True , verbose_name="نام کالا")
     english_title = models.CharField(max_length=150 , null=True , blank=True , verbose_name="نام اینگلیسی کالا")
     slug = models.SlugField(null=True , blank=True)
-    discription = RichTextUploadingField(null=True , blank=True , verbose_name="توضیحات کوتاه")
+    discription = models.TextField(null=True , blank=True , verbose_name="توضیحات کوتاه")
     price = models.SmallIntegerField(null=True , blank=True , verbose_name="قیمت کالا")
     code = models.SmallIntegerField(null=True , blank=True , verbose_name="کد کالا" , unique=True)
     category = models.ManyToManyField(Category , verbose_name="دسته بندی محصول" , related_name="products")
@@ -43,7 +43,7 @@ class Product(models.Model):
     image2 = models.ImageField(upload_to='shop/products' , verbose_name="2عکس کالا" , null=True , blank=True)
     image3 = models.ImageField(upload_to='shop/products' , verbose_name="3عکس کالا" , null=True , blank=True)
     tags = models.ManyToManyField(Tags , verbose_name="برچسب")
-    content = models.TextField(null=True , blank=True , verbose_name='توضیحات بیشتر')
+    content = RichTextUploadingField(null=True , blank=True , verbose_name='توضیحات بیشتر')
     tip1 = models.CharField(max_length=12000 , null=True , blank=True , verbose_name='نکته1')
     tip2 = models.CharField(max_length=12000 , null=True , blank=True , verbose_name='نکته2')
     tip3 = models.CharField(max_length=12000 , null=True , blank=True , verbose_name='نکته3')
@@ -73,7 +73,7 @@ class Comments(models.Model):
 
     parent = models.ForeignKey('self' , on_delete=models.CASCADE , related_name = 'replies' , null=True , blank=True, verbose_name = 'پست جواب داده شده')
 
-    message = models.TextField(null=True, blank=True, verbose_name = 'نظرات')
+    message = RichTextUploadingField(null=True, blank=True, verbose_name = 'نظرات')
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -100,7 +100,7 @@ class Like(models.Model):
 
 class Notification(models.Model):
     user = models.ManyToManyField(User , related_name='notifications' , verbose_name="انتخاب کاربر")
-    content = models.TextField(verbose_name="متن اعلان")
+    content = RichTextUploadingField(verbose_name="متن اعلان")
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -113,7 +113,7 @@ class Notification(models.Model):
 
 class NotificationPersonal(models.Model):
     user = models.ForeignKey(User , on_delete=models.CASCADE , related_name='notification_personal' , verbose_name="انتخاب کاربر")
-    content = models.TextField(verbose_name="متن اعلان")
+    content = RichTextUploadingField(verbose_name="متن اعلان")
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -123,3 +123,19 @@ class NotificationPersonal(models.Model):
         verbose_name = 'اعلان'
         verbose_name_plural = 'اعلان های شخصی کاربران'
         ordering = ('-created',)
+
+class AcceptTermsModel(models.Model):
+    discription_of_acceptterms = RichTextUploadingField(null=True , blank=True , verbose_name = 'توضیحات درباره ی شرایط سایت')
+    target_of_acceptterms1 = models.TextField(null=True , blank=True , verbose_name='هدف شماره 1 از گذاشتن شرایط و ...')
+    target_of_acceptterms2 = models.TextField(null=True , blank=True , verbose_name='هدف شماره 2 از گذاشتن شرایط و ...')
+    target_of_acceptterms3 = models.TextField(null=True , blank=True , verbose_name='هدف شماره 3 از گذاشتن شرایط و ...')
+    target_of_acceptterms4 = models.TextField(null=True , blank=True , verbose_name='هدف شماره 4 از گذاشتن شرایط و ...')
+    target_of_acceptterms5 = models.TextField(null=True , blank=True , verbose_name='هدف شماره 5 از گذاشتن شرایط و ...')
+    target_of_acceptterms6 = models.TextField(null=True , blank=True , verbose_name='هدف شماره 6 از گذاشتن شرایط و ...')
+
+    def __str__(self) -> str:
+        return self.discription_of_acceptterms
+    
+    class Meta:
+        verbose_name = 'شرایط و ضوابط'
+        verbose_name_plural = 'تنظیمات شرایط و ضوابط'

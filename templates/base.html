@@ -72,11 +72,11 @@
                                             <div class="notification-beautiful">
                                             {% if request.user.is_authenticated %}
                                                 {% for item in request.user.notifications.all %}
-                                                <p style="color: rgb(255, 255, 255); text-align : center;"><span class="notification-image"><img src="{% static "images/IMG_20230206_193312_606-removebg-preview.png" %}" alt="" width="100%" height="100%"></span>{{item.content}}</p>
+                                                <p style="color: rgb(255, 255, 255); text-align : center;"><span class="notification-image"><img src="{% static "images/IMG_20230206_193312_606-removebg-preview.png" %}" alt="" width="100%" height="100%"></span>{{item.content|safe}}</p>
                                                 <hr>
                                                 {% endfor %}
                                                 {% for item in request.user.notification_personal.all %}
-                                                <p style="color: rgb(255, 255, 255); text-align : center;"><span class="notification-image"><img src="{% static "images/IMG_20230206_193312_606-removebg-preview.png" %}" alt="" width="100%" height="100%"></span>{{item.content}}</p>
+                                                <p style="color: rgb(255, 255, 255); text-align : center;"><span class="notification-image"><img src="{% static "images/IMG_20230206_193312_606-removebg-preview.png" %}" alt="" width="100%" height="100%"></span>{{item.content|safe}}</p>
                                                 <hr>
                                                 {% endfor %}
                                             {% else %}
@@ -204,7 +204,7 @@
                                     <a href="{% url 'home:main' %}" class="nav-link dropdown-toggle {% if request.resolver_match.url_name == 'main'%}active{% endif %}">خانه </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="about.html" class="nav-link">درباره ما</a>
+                                    <a href="{% url 'about:about_main' %}" class="nav-link">درباره ما</a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="{% url 'shop:main_shop' %}" class="nav-link dropdown-toggle {% if request.resolver_match.url_name == 'main_shop'%}active{% endif %} ">فروشگاه</a>
@@ -267,22 +267,19 @@
                         <h3>خدمات مشتری</h3>
                         <ul>
                             <li>
-                                <a href="return-policy.html">سیاست بازگشت</a>
+                                <a href="/">سیاست بازگشت</a>
                             </li>
                             <li>
-                                <a href="faq.html">سوالات متداول</a>
+                                <a href="{% url 'shop:main_shop' %}">جزئیات محصول</a>
                             </li>
                             <li>
-                                <a href="single-product.html">جزئیات محصول</a>
+                                <a href="/">رهگیری سفارش</a>
                             </li>
                             <li>
-                                <a href="order-tracking.html">رهگیری سفارش</a>
+                                <a href="/">سیاست حریم خصوصی</a>
                             </li>
                             <li>
-                                <a href="privacy-policy.html">سیاست حریم خصوصی</a>
-                            </li>
-                            <li>
-                                <a href="contact.html">تماس با ما</a>
+                                <a href="{% url 'contactus:contact_main' %}">تماس با ما</a>
                             </li>
                         </ul>
                     </div>
@@ -299,41 +296,13 @@
                                         <a href="about.html">درباره ما</a>
                                     </li>
                                     <li>
-                                        <a href="blog.html">وبلاگ</a>
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModalWishlist" data-bs-whatever="@mdo">لیست مورد علاقه</a>
                                     </li>
                                     <li>
-                                        <a href="#">لیست مورد علاقه</a>
+                                        <a href="{% url 'shop:main_shop' %}">فروشگاه</a>
                                     </li>
                                     <li>
-                                        <a href="#">بررسی</a>
-                                    </li>
-                                    <li>
-                                        <a href="shop.html">فروشگاه</a>
-                                    </li>
-                                    <li>
-                                        <a href="login.html">حساب کاربری</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col-6 col-sm-4 col-lg-4">
-                                <ul>
-                                    <li>
-                                        <a href="#">دوربین ها</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">لپ تاپ ها</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">هدفون</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">ساعت هوشمند</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">میکروفون</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">کامپیوترها</a>
+                                        <a href="{% url 'account:otp' %}">حساب کاربری</a>
                                     </li>
                                 </ul>
                             </div>

@@ -6,12 +6,12 @@ from django.urls import reverse_lazy
 from django.contrib.auth import login , authenticate , logout
 import ghasedakpack
 import requests
-
 from shop.models import NotificationPersonal
 from .form import RegisterForm , OtpForm , Edite_Profile_Form , AddressCreationForm
 from random import randint
 from .models import OTP, User
-SMS = ghasedakpack.Ghasedak("8534236d76060f342738a94b4ca72c")
+
+sms = ghasedakpack.Ghasedak("426062d1eabeacda67797a915a44ac0d5ea8f552dba294c805d638f5796030ae")
 
 class OtpRegisterationView(LoginRequirdMixins , FormView):
     template_name = 'account/register.html'
@@ -20,7 +20,7 @@ class OtpRegisterationView(LoginRequirdMixins , FormView):
     def form_valid(self, form):
         cd = form.cleaned_data
         random_code = randint(1000 , 9999)
-        SMS.verification({'receptor': cd['phone'] , 'type': '1','template': 'randcode','param1': random_code})
+        sms.verification({'receptor': cd['phone'] , 'type': '1','template': 'resinabeat','param1': random_code})
         token = str(uuid4())
         OTP.objects.create(phone = cd['phone'] , is_Accept_terms = cd['is_Accept_terms'] , code = random_code , token = token)
         print(random_code)
