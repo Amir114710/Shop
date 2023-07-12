@@ -39,8 +39,6 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    'ckeditor',
-    'ckeditor_uploader',
     #My apps:
     'home_app.apps.HomeAppConfig',
     'shop.apps.ShopConfig',
@@ -49,12 +47,15 @@ INSTALLED_APPS = [
     'contactus.apps.ContactusConfig',
     'pay.apps.PayConfig',
     'about.apps.AboutConfig',
+    'sms_send.apps.SmsSendConfig',
     #My packages:
     'star_ratings',
     'django_cleanup',
     'django_render_partial',
     'widget_tweaks',
     'captcha',
+    'ckeditor',
+    'ckeditor_uploader',
 ]
 
 MIDDLEWARE = [

@@ -61,7 +61,6 @@ class SearchBox(TemplateView):
         queryset =  Product.objects.filter(title__icontains = q)
         return render(request, self.template_name, {'products': queryset})
     
-
 class AcceptTerms(TemplateView):
     template_name = 'shop/terms-conditions.html'
     def get_context_data(self, **kwargs):

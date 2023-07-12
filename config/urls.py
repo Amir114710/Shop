@@ -28,5 +28,6 @@ urlpatterns = [
     path('contactus/' , include('contactus.urls')),
     path('pay/' , include('pay.urls')),
     path('ckeditor/' , include('ckeditor_uploader.urls')),
-    path('about/' , include('about.urls'))
+    path('about/' , include('about.urls')),
+    path('send_sms/' , include('sms_send.urls'))
 ] + static(settings.MEDIA_URL , document_root= settings.MEDIA_ROOT)
